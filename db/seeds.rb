@@ -21,10 +21,10 @@ nb_items.times do |x|
   item = Item.create(
     title: "Atelier à " + Faker::Address.city,
     description: Faker::Lorem.paragraph_by_chars(number: 200, supplemental: false),
-  price: rand(1.0..20.0))
-  downloaded_image = open("https://picsum.photos/200/300")
-  item.avatar.attach(io: downloaded_image  , filename: "faker.jpg")
-  puts "seeding item nb #{x}"
+    price: rand(1..20))
+    downloaded_image = open("https://picsum.photos/200/300")
+    item.avatar.attach(io: downloaded_image  , filename: "faker.jpg")
+    puts "seeding item nb #{x}"
 end
 
 nb_users.times do |x|
