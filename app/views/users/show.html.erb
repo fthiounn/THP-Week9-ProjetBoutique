@@ -1,24 +1,28 @@
 <div class="container">    
-                <div class="jumbotron">
-                  <div class="row">
-                      <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4">
-                          <img src="https://www.svgimages.com/svg-image/s5/man-passportsize-silhouette-icon-256x256.png" alt="stack photo" class="img">
-                      </div>
-                      <div class="col-md-8 col-xs-12 col-sm-6 col-lg-8">
-                          <div class="container" style="border-bottom:1px solid black">
-                            <h2>John Doe</h2>
-                          </div>
-                          <div>
-                            <button type="button" class="col-md-11 btn btn-secondary">Editer</button>
-                          </div>
-                            <hr>
-                          <ul class="container details">
-                            <li><p><span class="glyphicon glyphicon-earphone one" style="width:50px;"></span>+91 90000 00000</p></li>
-                            <li><p><span class="glyphicon glyphicon-envelope one" style="width:50px;"></span>somerandom@email.com</p></li>
-                            <li><p><span class="glyphicon glyphicon-map-marker one" style="width:50px;"></span>Hyderabad</p></li>
-                            <li><p><span class="glyphicon glyphicon-new-window one" style="width:50px;"></span><a href="#">www.example.com</p></a>
-                          </ul>
-                      </div>
-                  </div>
-                </div>
+  <div class="jumbotron">
+    <div class="row">
+        <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4">
+          <%if @user.avatar.attached?%>
+          <%= image_tag @user.avatar, style: "width:300px;height:300px", alt: 'avatar' %>
+          <%else%>
+          <%= image_tag "profile_picture.jpg", style: "width:300px;height:300px" %>
+          <%end%> 
+        </div>
+        <div class="col-md-8 col-xs-12 col-sm-6 col-lg-8">
+            <div class="container" style="border-bottom:1px solid black">
+              <h2><%=@user.first_name%> <%=@user.last_name%></h2>
+            </div>
+            <ul class="container details">
+              <li><p><span class="glyphicon glyphicon-earphone one" style="width:50px;"></span>+33 6 88 88 88 88</p></li>
+              <li><p><span class="glyphicon glyphicon-envelope one" style="width:50px;"></span><%=@user.email%></p></li>
+              <li><p><span class="glyphicon glyphicon-map-marker one" style="width:50px;"></span><%=@user.description%></p></li>
+            </ul>
+             <% if current_user.id == @user.id %>
+              <%= link_to 'Modifier tes Infos', edit_user_path(@user) %>  |
+              <%= link_to "Modifier ton mot de passe", edit_user_registration_path(@user) %> |   
+              <%= link_to 'Supprimer', users_path(@event), method: :delete, data: { confirm: 'Are you sure?' }  %>
+            <% end %>
+        </div>
+    </div>
+  </div>
             

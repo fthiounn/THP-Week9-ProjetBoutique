@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   resources :order_items
   resources :orders
   resources :carts
-  resources :items
+  resources :items do
+    post 'search',  :on => :collection
+  end
   resources :users
   resources :charges
   resources :contacts, only: [:new, :create]

@@ -1,18 +1,33 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
+     <a class="navbar-brand">
+          <%= image_tag "navlogo.png", style: "width:60px;height:60px" %>
+        </a>
       <%= link_to "Accueil", root_path, :class => "navbar-brand" %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
+        <% if user_signed_in? %>
+         <li class="nav-item">
+            <%= link_to "MON COMPTE" , user_path(current_user.id), :class => "nav-link" %>
+          </li>
+          <%else%>
           <li class="nav-item">
             <%= link_to "S'IDENTIFIER" , new_user_session_url, :class => "nav-link" %>
           </li>
+          <%end%>
           <li class="nav-item">
             <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i></a>
           </li>
+          <form class="form-inline my-2 my-lg-0">
+              <%= form_tag(search_items_path, method: 'post') do %>
+                      <%= text_field_tag(:search, params[:search], class:"form-control mr-sm-2", placeholder:"Rechercher un atelier") %>
+                      <%= submit_tag("Go", name: nil, class:"btn btn-success my-2 my-sm-0")%>
+              <% end %> 
+          </form>
         </ul>
       </div>
     </div>
