@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   resources :items
   resources :users
   resources :charges
-  resources :contacts
+  resources :contacts, only: [:new, :create]
   root to: "items#index"
 end
