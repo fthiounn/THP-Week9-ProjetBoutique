@@ -73,3 +73,5 @@ gem 'dotenv-rails'
 gem "aws-sdk-s3", require: false
 gem 'aws-sdk-rails'
 gem 'aws-ses', '~> 0.4.4', require: 'aws/ses'
+
+gem "simple_form", "~> 5.0"
