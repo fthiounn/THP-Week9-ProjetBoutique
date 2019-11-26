@@ -1,0 +1,3 @@
+module ContactHelper
+	
+end

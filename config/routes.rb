@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   resources :items
   resources :users
   resources :charges
+  resources :contact
   root to: "items#index"
 end
