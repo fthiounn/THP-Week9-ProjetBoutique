@@ -24,16 +24,25 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
-
-    respond_to do |format|
-      if @user.save
+    @user = User.new(first_name: params[:first_name], 
+                    last_name: params[:last_name],
+                    description: params[:description],
+                    email: params[:mail])
+    
+    if params[:password] != params[:confirmpassword]
+      flash.now[:danger] = "Passwords must match !"
+      render :action => 'new' 
+    end
+    if @user.save # essaie de sauvegarder en base @gossip
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+        flash[:success] = "You successfuly created your account"
+        redirect_to :controller => 'users', :action => 'index'
+    else
+      format.html { render :new }
+      format.json { render json: @user.errors, status: :unprocessable_entity }
+      flash.now[:danger] = "Error with the account creation"
+      render :action => 'new'
     end
   end
 

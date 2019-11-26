@@ -61,6 +61,20 @@ class ItemsController < ApplicationController
     end
   end
 
+  def search
+    @items = Item.all
+    if Item.exists?(title: params[:search])
+     @item = Item.find_by(title: params[:search])
+      flash[:success] = "Atelier found !"
+      redirect_to @item
+
+    else
+      flash[:danger] = "Atelier doesn't exist !"
+      render :controller => 'items', :action => 'index'
+    end
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
