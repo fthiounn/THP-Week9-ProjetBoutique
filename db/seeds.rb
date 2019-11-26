@@ -5,3 +5,63 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+require 'open-uri'
+require 'faker'
+
+nb_users = 5
+nb_items = 5
+nb_carts = 5
+nb_items_per_carts = 5
+nb_items_per_orders = 5
+nb_orders = 5
+
+nb_items.times do |x|
+  item = Item.create(
+    title: "Atelier à " + Faker::Address.city,
+    description: Faker::Lorem.paragraph_by_chars(number: 200, supplemental: false),
+  price: rand(1.0..20.0))
+  downloaded_image = open("https://picsum.photos/200/300")
+  item.avatar.attach(io: downloaded_image  , filename: "faker.jpg")
+  puts "seeding item nb #{x}"
+end
+
+nb_users.times do |x|
+  fname = Faker::Name.first_name
+  User.create(
+    first_name: fname,
+    password: 'azerty',
+    description: Faker::Lorem.paragraph_by_chars(number: 200, supplemental: false),
+    last_name: Faker::Name.last_name,
+  email: fname + "@yopmail.com")
+  puts "Seeding of User nb #{x}"
+end
+
+nb_carts.times do |x|
+  Cart.create(
+    user_id: User.all.sample.id,
+  item_id: Item.all.sample.id)
+  puts "Seed of Cart nb #{x}"
+end
+
+nb_items_per_carts.times do |x|
+  CartItem.create(
+    cart_id: Cart.all.sample.id,
+  item_id: Item.all.sample.id)
+  puts "Seed of items per Cart nb #{x}"
+end
+
+nb_orders.times do |x|
+  Order.create(
+    user_id: User.all.sample.id,
+  item_id: Item.all.sample.id)
+  puts "Seed of orders nb #{x}"
+end
+
+nb_items_per_orders.times do |x|
+  OrderItem.create(
+    order_id: Order.all.sample.id,
+  item_id: Item.all.sample.id)
+  puts "Seed of items per order nb #{x}"
+end
