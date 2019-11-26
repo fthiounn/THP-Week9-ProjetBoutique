@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   end
   resources :users
   resources :charges
+  resources :contacts
   root to: "items#index"
 end

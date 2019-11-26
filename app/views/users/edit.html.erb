@@ -1,6 +1,43 @@
-<h1>Editing User</h1>
 
-<%= render 'form', user: @user %>
+<% content_for :title, "Edit User" %>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+
+<div class="card bg-light">
+<article class="card-body mx-auto" style="max-width: 400px;">
+	<h4 class="card-title mt-3 text-center">Modifie ton compte</h4>
+
+ <%= simple_form_for @user, multipart: true do |f| %>
+
+  <div class="form-group input-group">
+		<div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+      </div>
+      <%=f.text_field :first_name, placeholder: "Prénom", class: "form-control",size: "50" %>
+    </div>
+    <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+      </div>
+         <%=f.text_field :last_name, placeholder: "Nom", class: "form-control",size: "50" %>
+    </div>
+    <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+      </div>
+      <%=f.text_field :description, placeholder: "Description", class: "form-control", size: "50" %>
+    </div>
+    <!-- form-group// --> 
+    <p>Photo de profil :</p>
+     <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <%= f.file_field :avatar %>
+        </div>
+    </div>                                     
+    <div class="form-group input-group">
+      <%= f.submit  "Modifier", class: "btn btn-primary btn-block" %>
+    </div> <!-- form-group// -->  
+   <%end%>
+    </article>
+
+</div> 

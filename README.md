@@ -24,3 +24,8 @@ Mardi :
 
 	
 ## Description du projet
+
+Création d'une boutique en ligne d'ateliers Do It Yourself. La Fabrique des Castors propose des ateliers dans différentes villes. 
+Les valeurs de la FDC sont nombreuses : Partage, Proximité, Créativité et Ouverture.
+L'ambition de la Fabrique des Castors : encourager les initiaves DIY et créer une communauté de personnes désireux de participer aux ateliers et aux personnes désirant proposer leurs ateliers.
+La Boutique en ligne propose l'achat d'ateliers DIY réalisé par des users admin. 
