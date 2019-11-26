@@ -12,15 +12,16 @@
             <div class="container" style="border-bottom:1px solid black">
               <h2><%=@user.first_name%> <%=@user.last_name%></h2>
             </div>
-            <div>
-              <button type="button" class="col-md-11 btn btn-secondary">Editer</button>
-            </div>
-              <hr>
             <ul class="container details">
               <li><p><span class="glyphicon glyphicon-earphone one" style="width:50px;"></span>+33 6 88 88 88 88</p></li>
               <li><p><span class="glyphicon glyphicon-envelope one" style="width:50px;"></span><%=@user.email%></p></li>
               <li><p><span class="glyphicon glyphicon-map-marker one" style="width:50px;"></span><%=@user.description%></p></li>
             </ul>
+             <% if current_user.id == @user.id %>
+              <%= link_to 'Modifier tes Infos', edit_user_path(@user) %>  |
+              <%= link_to "Modifier ton mot de passe", edit_user_registration_path(@user) %> |   
+              <%= link_to 'Supprimer', users_path(@event), method: :delete, data: { confirm: 'Are you sure?' }  %>
+            <% end %>
         </div>
     </div>
   </div>
