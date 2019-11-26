@@ -18,7 +18,7 @@
       <div class="col-lg-9">
 
         <div class="card mt-4">
-          <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
+          <%= image_tag @item.avatar, class:"card-img-top img-fluid", style:"width:900px;height:400px;", alt:"avatar"%>
           <div class="card-body">
             <h3 class="card-title"><%=@item.title%></h3>
             <h4><%=@item.price%>€</h4>

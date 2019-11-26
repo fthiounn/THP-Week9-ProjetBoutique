@@ -49,22 +49,20 @@
         <div class="row">
          <% @items.reverse_each do |item|  %> 
           <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <%= image_tag item.avatar, class:"card-img-top", style:"width:253px;height:200px;"%>
-              <div class="card-body">
+          <div class="card h-100">
+            <%= image_tag item.avatar, class:"card-img-top", style:"width:253px;height:200px;"%>
+              <%= button_to item, class:"card-body",method: :get do %>
                 <h4 class="card-title">
-                  <%= link_to item, method: :get do %>
                   <%= item.title %>
-                  <% end %> 
                 </h4>
                 <h5><%=item.price%> €</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-              </div>
-              <div class="card-footer">
+                <p class="card-text"><%=item.description%></p>
+              <div>
                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
               </div>
+            <%end%>
             </div>
-          </div>
+            </div>
           <%end%>
 
         </div>
