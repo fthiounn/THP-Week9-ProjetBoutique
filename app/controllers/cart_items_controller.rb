@@ -14,7 +14,8 @@ class CartItemsController < ApplicationController
 
   # GET /cart_items/new
   def new
-    @cart_item = CartItem.new
+    puts "******" *800
+  create
   end
 
   # GET /cart_items/1/edit
@@ -24,17 +25,11 @@ class CartItemsController < ApplicationController
   # POST /cart_items
   # POST /cart_items.json
   def create
-    @cart_item = CartItem.new(cart_item_params)
-
-    respond_to do |format|
-      if @cart_item.save
-        format.html { redirect_to @cart_item, notice: 'Cart item was successfully created.' }
-        format.json { render :show, status: :created, location: @cart_item }
-      else
-        format.html { render :new }
-        format.json { render json: @cart_item.errors, status: :unprocessable_entity }
-      end
-    end
+    puts current_user.id
+    @cart_item = CartItem.new(
+      cart_id: Cart.where(user_id: current_user.id).id,
+      item_id: params[:item_id])
+    redirect_to cart_path(Cart.find(current_cart_id))
   end
 
   # PATCH/PUT /cart_items/1

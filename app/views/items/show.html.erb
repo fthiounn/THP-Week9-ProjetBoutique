@@ -38,7 +38,7 @@
                   <option value="8">8</option>
                   <option value="9">9</option>
               </select>
-            <button type="button" class="btn btn-luc">Ajouter au panier</button>
+              <%= button_to "Ajouter au panier", new_item_cart_item_path(@item), class: "btn btn-luc" %>
           </div>
         </div>
         <!-- /.card -->

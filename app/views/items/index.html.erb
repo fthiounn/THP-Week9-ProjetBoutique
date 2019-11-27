@@ -70,7 +70,7 @@
                   <option value="8">8</option>
                   <option value="9">9</option>
               </select>
-              <button type="button" class="btn btn-luc">Ajouter au panier</button>
+              <%= button_to "Ajouter au panier", item_cart_items_path(:item_id), method: :post,class: "btn btn-luc" %>
             <%end%>
             </div>
             </div>
