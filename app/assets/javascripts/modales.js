@@ -4,20 +4,12 @@ $(document).ready(function() {
   ************************************************************************/
   // display the modal
   var modal = document.getElementById("loginModal");
-  var loginbtn = document.getElementsByClass("login")[0];
-  var signupbtn = document.getElementsByClass("signup")[0];
+  var loginbtn = document.getElementById("login");
   var span = document.getElementById("close-modal");
-
   // When the user clicks the button, open the modal 
-  loginbtn.onclick = function() {
-    modal.style.display = "block";
-    $("#login-content").removeClass("d-none");
-    $("#signup-content").addClass("d-none");
-  }
-  signupbtn.onclick = function() {
-    modal.style.display = "block";
-    $("#signup-content").removeClass("d-none");
-    $("#login-content").addClass("d-none");
+  loginbtn.onclick = function(e) {
+     e.preventDefault();
+     modal.style.display = "block";
   }
 
   // When the user clicks on <span> (x), close the modal
