@@ -1,43 +1,46 @@
 
 <% content_for :title, "Edit User" %>
 
+  <div class="contact1">
+		<div class="container-contact1">
+			<div class="contact1-pic js-tilt" data-tilt>
+          <%= image_tag "img-02.png", alt: "IMG"%>
+			</div>
+       <%= simple_form_for @user, class: "contact1-form validate-form", multipart: true do |f| %>
+				<span class="contact1-form-title">
+					Modifie ton compte
+				</span>
 
-<div class="card bg-light">
-<article class="card-body mx-auto" style="max-width: 400px;">
-	<h4 class="card-title mt-3 text-center">Modifie ton compte</h4>
+				<div class="wrap-input1 validate-input" data-validate = "Name is required">
+					<%= f.text_field :first_name, placeholder:"Prénom", class: "input1" %>
+					<span class="shadow-input1"></span>
+				</div>
 
- <%= simple_form_for @user, multipart: true do |f| %>
+				<div class="wrap-input1 validate-input" data-validate = "Name is required">
+					<%= f.text_field :last_name, placeholder:"Nom", class: "input1" %>
+					<span class="shadow-input1"></span>
+				</div>
 
-  <div class="form-group input-group">
-		<div class="form-group input-group">
-    	<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-      </div>
-      <%=f.text_field :first_name, placeholder: "Prénom", class: "form-control",size: "50" %>
-    </div>
-    <div class="form-group input-group">
-    	<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-      </div>
-         <%=f.text_field :last_name, placeholder: "Nom", class: "form-control",size: "50" %>
-    </div>
-    <div class="form-group input-group">
-    	<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-      </div>
-      <%=f.text_field :description, placeholder: "Description", class: "form-control", size: "50" %>
-    </div>
-    <!-- form-group// --> 
-    <p>Photo de profil :</p>
-     <div class="form-group input-group">
-        <div class="input-group-prepend">
-          <%= f.file_field :avatar %>
-        </div>
-    </div>                                     
-    <div class="form-group input-group">
-      <%= f.submit  "Modifier", class: "btn btn-primary btn-block" %>
-    </div> <!-- form-group// -->  
-   <%end%>
-    </article>
+        <div class="wrap-input1 validate-input" data-validate = "Name is required">
+					<%= f.text_field :description, placeholder:"Description", class: "input1" %>
+					<span class="shadow-input1"></span>
+				</div>
 
-</div> 
+        <p>Photo de profil :</p>
+        
+        <div class="wrap-input1 validate-input" data-validate = "Name is required">
+              <%= f.file_field :avatar %>
+					    <span class="shadow-input1"></span>
+        </div> 
+
+				<div class="container-contact1-form-btn">
+          <%= f.submit  "Modifier", class: "contact1-form-btn" %>
+				</div>
+			<%end%>
+		</div>
+	</div>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
