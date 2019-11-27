@@ -21,19 +21,26 @@
           <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
           4.0 stars
           <br/>
-          <label for="q">Quantité: </label>
-          <select id="qt" name="q">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-          </select>
-          <%= link_to "Ajouter au panier", new_item_cart_item_path(item),class: "btn btn-luc" %>
+          <!-- IMPLEMENTER LES QUANTITES 
+          <form>
+            <label for="q">Quantité: </label>
+            <select class="qt" name="quantity">
+              <option selected="">1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+            </select>
+            
+
+          </form>
+          -->
+          <%= link_to "Ajouter au panier", new_item_cart_item_path(@item, quantity: 1),class: "btn btn-luc btn-quantity" %>
         </div>
       </div>
       <!-- /.card -->

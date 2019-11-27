@@ -13,7 +13,6 @@ class CartsController < ApplicationController
     @cart_id = Cart.where(user_id: current_user.id).first.id
     @items = Item.where(id: CartItem.select(:item_id).where(cart_id: @cart_id))
     @user = User.find(@cart.user_id)
-    puts "$$$$" * 100
   end
 
   # GET /carts/new
@@ -57,7 +56,7 @@ class CartsController < ApplicationController
 
   # DELETE /carts/1
   # DELETE /carts/1.json
-  def destroy    
+  def destroy
     @cart_id = Cart.where(user_id: current_user.id).first.id
     CartItem.where(cart_id: @cart_id).destroy_all
     respond_to do |format|

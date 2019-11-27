@@ -19,3 +19,4 @@
 //= require select2.min
 //= require tilt.jquery.min
 //= require modales
+//= require cart_items

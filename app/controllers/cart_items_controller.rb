@@ -28,10 +28,11 @@ class CartItemsController < ApplicationController
     #CHECK if the item is alrady here
     if CartItem.where(cart_id: @cart_id,item_id: params[:item_id]).blank? then
       #if not
-      CartItem.create(cart_id: @cart_id, item_id: params[:item_id], quantity: 5)
+      CartItem.create(cart_id: @cart_id, item_id: params[:item_id], quantity: params[:quantity])
     else
       #else, add the number
-      CartItem.update(quantity: 5)
+      qte = CartItem.where(cart_id: @cart_id,item_id: params[:item_id]).first.quantity + params[:quantity].to_i
+      CartItem.update(quantity: qte)
     end
     redirect_to cart_path(@cart_id)
   end
