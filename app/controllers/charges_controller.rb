@@ -4,11 +4,12 @@ class ChargesController < ApplicationController
 
 
   def new
+    @totalprice = params[:totalprice]
   end
 
   def create
     # Amount in cents
-    @amount = 500
+    @amount = @totalprice *100
 
     customer = Stripe::Customer.create({
                                          email: params[:stripeEmail],
@@ -27,3 +28,4 @@ class ChargesController < ApplicationController
     redirect_to new_charge_path
   end
 end
+
