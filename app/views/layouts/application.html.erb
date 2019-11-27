@@ -4,15 +4,14 @@
     <title><%= yield(:title) %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= favicon_link_tag asset_path('favicon1.ico') %>    
+    <%= favicon_link_tag asset_path('favicon1.ico') %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Pacifico" />
   </head>
-
   <body>
-    <%= render 'layouts/header' %>  
+    <%= render 'layouts/header' %>
     <%= yield %>
     <%= render 'layouts/footer' %>
   </body>
