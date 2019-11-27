@@ -1,8 +1,53 @@
- <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; La Fabrique des Castors 2019</p>
-
+<footer class="container py-5">
+  <div class="row">
+    <div class="col-12 col-md">
+ 
+      <small class="d-block mb-3 text-muted">&copy;2019: la fabrique des castors</small>
     </div>
-    <!-- /.container -->
-  </footer>
+    <div class="col-6 col-md">
+      <h5>A propos</h5>
+      <ul class="list-unstyled text-small">
+
+        <li><%= link_to "Contact", new_contact_path, class: "text-muted" %></li>
+        <li><%= link_to "Team", new_team_path, class: "text-muted" %></li>
+        <li><a class="text-muted" href="#">Recrutement</a></li>
+        <li><a class="text-muted" href="#">Proposer des ateliers</a></li>
+      </ul>
+    </div>
+     <div class="col-6 col-md location">
+      <h4 class="mt-lg-0 mt-sm-4">Localisation</h4>
+      <p>22, Lorem ipsum dolor, consectetur adipiscing</p>
+      <p class="mb-0"><i class="fa fa-phone mr-3"></i>+33 6 75 43 01 00</p>
+      <p><i class="fa fa-envelope mr-3"></i>fabriquedescastors@gmail.com</p>
+    </div>
+    <div class="col-6 col-md">
+    <ul class="list-group">
+      <li class="list-group-item bg-transparent border-0 p-0 mb-2">
+        <a href="" class="text-muted"><i class="fab fa fa-linkedin mr-1"></i> LinkedIn</a>
+      </li>
+      <li class="list-group-item bg-transparent border-0 p-0 mb-2">
+        <a  href="" class="text-muted"><i class="fab fa fa-twitter mr-1"></i> Twitter</a>       
+      </li >
+      <li class="list-group-item bg-transparent border-0 p-0 mb-2"> 
+        <a href="" class="text-muted"><i class="fab fa fa-reddit mr-1"></i> Reddit</a>
+      </li>
+      <li class="list-group-item bg-transparent border-0 p-0 mb-2">
+        <a href="" target="_blank" class="text-muted"><i class="fab fa fa-google-plus mr-1"></i> Google+</a>
+        
+      </li>
+      <li class="list-group-item bg-transparent border-0 p-0 mb-2">
+        <a href="" target="_blank" class="text-muted"><i class="fab fa fa-github mr-1"></i> Github</a>  
+      </li>
+      <li class="list-group-item bg-transparent border-0 p-0 mb-2">
+        <a href="" target="_blank" class="text-muted"><i class="fab fa fa-medium mr-1"></i> Medium</a>
+      </li>
+      <li class="list-group-item bg-transparent border-0 p-0 mb-2">
+        <a href="" target="_blank" class="text-muted"><i class="fab fa fa-facebook mr-1"></i> Facebook</a>
+      </li>
+      <li class="list-group-item bg-transparent border-0 p-0 mb-2">
+        <a href="" target="_blank" class="text-muted"><i class="fab fa fa-youtube mr-1"></i> YouTube</a>
+      </li>
+    </ul>
+    </div>
+  </div>
+</footer>

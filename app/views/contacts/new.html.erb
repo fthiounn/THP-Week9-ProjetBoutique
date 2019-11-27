@@ -1,14 +1,15 @@
-
-<% content_for :title, "Edit User" %>
+<% content_for :title, "Contact" %>
 
   <div class="contact1">
 		<div class="container-contact1">
 			<div class="contact1-pic js-tilt" data-tilt>
-          <%= image_tag "img-02.png", alt: "IMG"%>
+          <%= image_tag "img-01.png", alt: "IMG"%>
 			</div>
-       <%= simple_form_for @user, class: "contact1-form validate-form", multipart: true do |f| %>
+
+			<form class="contact1-form validate-form">
+			<%= form_for (Contact.new), class: "contact1-form validate-form" do |f| %>
 				<span class="contact1-form-title">
-					Modifie ton compte
+					Contactez nous
 				</span>
 
 				<div class="wrap-input1 validate-input" data-validate = "Name is required">
@@ -21,20 +22,18 @@
 					<span class="shadow-input1"></span>
 				</div>
 
-        <div class="wrap-input1 validate-input" data-validate = "Name is required">
-					<%= f.text_field :description, placeholder:"Description", class: "input1" %>
+				<div class="wrap-input1 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<%= f.text_field :email, placeholder:"email", class: "input1" %>
 					<span class="shadow-input1"></span>
 				</div>
 
-        <p>Photo de profil :</p>
-        
-        <div class="wrap-input1 validate-input" data-validate = "Name is required">
-              <%= f.file_field :avatar %>
-					    <span class="shadow-input1"></span>
-        </div> 
+				<div class="wrap-input1 validate-input" data-validate = "Message is required">
+					<%= f.text_area :message, placeholder:"Message", class: "input1" %>
+					<span class="shadow-input1"></span>
+				</div>
 
 				<div class="container-contact1-form-btn">
-          <%= f.submit  "Modifier", class: "contact1-form-btn" %>
+          <%= f.submit  "Envoyer", class: "contact1-form-btn" %>					
 				</div>
 			<%end%>
 		</div>

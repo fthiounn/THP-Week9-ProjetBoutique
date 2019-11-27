@@ -11,7 +11,7 @@ require 'open-uri'
 require 'faker'
 
 nb_users = 5
-nb_items = 6
+nb_items = 20
 nb_carts = 5
 nb_items_per_carts = 5
 nb_items_per_orders = 5
