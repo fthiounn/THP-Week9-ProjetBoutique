@@ -1,20 +1,32 @@
-<h2>Log in</h2>
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<% content_for :title, "Ouverture d'une session" %>
+<div class="contact1">
+  <div class="container-contact1">
+    <div class="contact1-pic js-tilt" data-tilt>
+      <%= image_tag "img-02.png", alt: "IMG"%>
     </div>
-  <% end -%>
-  <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= form_for resource, as: resource_name, url: session_path(resource_name), class: "contact1-form validate-form" do |f| %>
+      <span class="contact1-form-title">
+        Connectez-vous
+      </span>
+      <div class="wrap-input1 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+        <%= f.text_field :email, placeholder:"email", class: "input1", autofocus: true %>
+        <span class="shadow-input1"></span>
+      </div>
+      <div class="wrap-input1 validate-input" data-validate = "Name is required">
+        <%= f.password_field :password, placeholder:"Mot de passe", type: "password", class: "input1", autofocus: true %>
+        <span class="shadow-input1"></span>
+      </div>
+      <div class="container-contact1-form-btn">
+        <%= f.submit  "Se connecter", class: "contact1-form-btn" %>
+      </div>
+      <div class="text-center p-t-12">
+        <p>  Vous êtes nouveau ? - <%= render "devise/shared/links" %></p>
+      </div>
+    <%end%>
   </div>
-<% end %>
+</div>
+<script >
+  $('.js-tilt').tilt({
+    scale: 1.1
+  })
+</script>
