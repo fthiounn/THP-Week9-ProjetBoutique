@@ -12,7 +12,6 @@ require 'faker'
 
 nb_users = 5
 nb_items = 20
-nb_carts = 5
 nb_items_per_carts = 5
 nb_items_per_orders = 5
 nb_orders = 5
@@ -22,7 +21,7 @@ nb_items.times do |x|
     title: "Atelier à " + Faker::Address.city,
     description: Faker::Lorem.paragraph_by_chars(number: 200, supplemental: false),
     price: rand(1..20))
-    downloaded_image = open("http://lorempixel.com/900/400")
+    downloaded_image = open("https://as2.ftcdn.net/jpg/01/07/53/03/500_F_107530378_kLnJTha4oL4DDBHZmtrP0fBuuNMRJlbt.jpg")
     item.avatar.attach(io: downloaded_image  , filename: "faker.jpg")
     puts "seeding item nb #{x}"
 end
@@ -38,16 +37,10 @@ nb_users.times do |x|
   puts "Seeding of User nb #{x}"
 end
 
-nb_carts.times do |x|
-  Cart.create(
-    user_id: User.all.sample.id,
-  item_id: Item.all.sample.id)
-  puts "Seed of Cart nb #{x}"
-end
 
 nb_items_per_carts.times do |x|
   CartItem.create(
-    cart_id: Cart.all.sample.id,
+  cart_id: Cart.all.sample.id,
   item_id: Item.all.sample.id)
   puts "Seed of items per Cart nb #{x}"
 end
