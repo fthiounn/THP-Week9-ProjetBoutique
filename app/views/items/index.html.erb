@@ -52,9 +52,9 @@
             <%= image_tag item.avatar, class:"card-img-top", style:"width:253px;height:200px;"%>
               <%= button_to item, class:"card-body",method: :get do %>
                 <h4 class="card-title">
-                  <%= item.title %>
+                  <h3><%= item.title %></h3>
                 </h4>
-                <h5><%=item.price%> €</h5>
+                <h4><%=item.price%> €</h4>
                 <p class="card-text"><%=item.description%></p>
               <div>
                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>

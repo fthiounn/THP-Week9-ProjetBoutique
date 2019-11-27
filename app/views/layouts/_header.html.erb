@@ -4,7 +4,7 @@
      <a class="navbar-brand">
           <%= image_tag "navlogo.png", style: "width:46px;height:46px" %>
         </a>
-      <%= link_to "Accueil", root_path, :class => "navbar-brand" %>
+      <h1><%= link_to "Accueil", root_path, :class => "navbar-brand" %></h1>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -13,16 +13,16 @@
           <form class="form-inline my-2 my-lg-0">
               <%= form_tag(search_items_path, method: 'post') do %>
                       <%= text_field_tag(:search, params[:search], class:"form-control mr-sm-2", placeholder:"Rechercher...") %>
-                      <%= submit_tag("Go", name: nil, class:"btn btn-success my-2 my-sm-0")%>
+                      <%= submit_tag("Go", name: nil, class:"btn btn-luc my-2 my-sm-0")%>
               <% end %> 
           </form>
         <% if user_signed_in? %>
          <li class="nav-item">
-            <%= link_to "MON COMPTE" , user_path(current_user.id), :class => "nav-link" %>
+            <h1><%= link_to "MON COMPTE" , user_path(current_user.id), :class => "nav-link" %></h1>
           </li>
           <%else%>
           <li class="nav-item">
-            <%= link_to "S'IDENTIFIER" , new_user_session_url, :class => "nav-link" %>
+            <h1><%= link_to "S'IDENTIFIER" , new_user_session_url, :class => "nav-link" %></h1>
           </li>
           <%end%>
           <li class="nav-item">
