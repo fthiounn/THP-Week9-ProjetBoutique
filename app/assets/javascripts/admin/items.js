@@ -10,11 +10,10 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
-//= require activestorage
-//= require turbolinks
-//= require assets/javascripts/jquery-3.2.1.min
-//= require assets/javascripts/popper
-//= require assets/javascripts/select2.min
-//= require assets/javascripts/tilt.jquery.min
-//= require modales
+//= require assets_items_admin/javascripts/bootstrap.bundle.min
+//= require assets_items_admin/javascripts/datatables-demo.js
+//= require assets_items_admin/javascripts/dataTables.bootstrap4.min
+//= require assets_items_admin/javascripts/jquery.dataTables.min
+//= require assets_items_admin/javascripts/jquery.easing.min
+//= require assets_items_admin/javascripts/jquery.min
+//= require assets_items_admin/javascripts/sb-admin-2.min

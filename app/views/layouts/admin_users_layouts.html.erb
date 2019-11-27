@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= yield(:title) %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= favicon_link_tag asset_path('favicon1.ico') %>
+    <%= stylesheet_link_tag    'admin_users', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'admin_users', 'data-turbolinks-track': 'reload' %>
+
+  </head>
+  <body>
+    <%= yield %>
+    <%= render 'layouts/footer' %>
+  </body>
+</html>
