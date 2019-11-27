@@ -25,10 +25,14 @@ class CartItemsController < ApplicationController
   # POST /cart_items.json
   def create
     @cart_id = Cart.where(user_id: current_user.id).first.id
-    puts current_user.id
-    @cart_item = CartItem.create(
-      cart_id: @cart_id,
-    item_id: params[:item_id])
+    #CHECK if the item is alrady here
+    if CartItem.where(cart_id: @cart_id,item_id: params[:item_id]).blank? then
+      #if not
+      CartItem.create(cart_id: @cart_id, item_id: params[:item_id], quantity: 5)
+    else
+      #else, add the number
+      CartItem.update(quantity: 5)
+    end
     redirect_to cart_path(@cart_id)
   end
 
