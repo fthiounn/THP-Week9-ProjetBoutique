@@ -10,8 +10,10 @@ class CartsController < ApplicationController
   # GET /carts/1
   # GET /carts/1.json
   def show
-    @items = CartItem.where(user_id: @cart.user_id)
+    @cart_id = Cart.where(user_id: current_user.id).first.id
+    @items = Item.where(id: CartItem.select(:item_id).where(cart_id: @cart_id))
     @user = User.find(@cart.user_id)
+    puts "$$$$" * 100
   end
 
   # GET /carts/new
@@ -55,10 +57,11 @@ class CartsController < ApplicationController
 
   # DELETE /carts/1
   # DELETE /carts/1.json
-  def destroy
-    @cart.destroy
+  def destroy    
+    @cart_id = Cart.where(user_id: current_user.id).first.id
+    CartItem.where(cart_id: @cart_id).destroy_all
     respond_to do |format|
-      format.html { redirect_to carts_url, notice: 'Cart was successfully destroyed.' }
+      format.html { redirect_to @cart, notice: 'Cart was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

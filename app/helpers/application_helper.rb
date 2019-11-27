@@ -4,11 +4,15 @@ module ApplicationHelper
 		Cart.where(user_id: current_user.id).id
 	end
 
-	def totalprice
-    @items.each_with_index do |i, index|
-    @totalprice += ( i.price * i.quantity )
+	def current_cart_id
+    Cart.where(user_id: current_user.id).first.id
     end
-    @totalprice = @order.totalprice
+
+	def totalprice
+        @items.each_with_index do |i|
+            @totalprice += ( i.price * i.quantity )
+        end
+        @totalprice = @order.totalprice
     end
 
 
