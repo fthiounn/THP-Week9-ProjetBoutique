@@ -1,0 +1,24 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <ul class="nav nav-pills">
+      <li class="btn login-tab btn-info m-1">
+        <h5 class="modal-title" id="login-tab">Login</h5>
+      </li>
+      <li class="btn signup-tab btn-info m-1">
+        <h5 class="modal-title" id="signup-tab">Signup</h5>
+      </li>
+    </ul>
+    <button id="close-modal" type="button" class="btn btn-danger d-flex-reverse" data-dismiss="modal">Close</button>
+  </div>
+  <div class="modal-body">
+    <div class="tab-content">
+      <div id="login-content" class="card category-content text-center">
+        <%= render 'devise/sessions/new' %>
+      </div>
+      <div id="signup-content" class="card category-content d-none text-center">
+        <%=render 'devise/registrations/new'%>
+        <%= link_to "Forgot your password?", new_password_path(resource_name) , class: "btn btn-info"%>
+      </div>
+    </div>
+  </div>
+</div>
