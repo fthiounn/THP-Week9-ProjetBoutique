@@ -1,31 +1,102 @@
 <% content_for :title, "Compte" %>
-
-<div class="container">    
-  <div class="jumbotron">
-    <div class="row">
-        <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4">
-          <%if @user.avatar.attached?%>
-          <%= image_tag @user.avatar, style: "width:300px;height:300px", alt: 'avatar' %>
-          <%else%>
-          <%= image_tag "profile_picture.jpg", style: "width:300px;height:300px" %>
-          <%end%> 
-        </div>
-        <div class="col-md-8 col-xs-12 col-sm-6 col-lg-8">
-            <div class="container" style="border-bottom:1px solid black">
-              <h2><%=@user.first_name%> <%=@user.last_name%></h2>
-            </div>
-            <ul class="container details">
-              <li><p><span class="glyphicon glyphicon-earphone one" style="width:50px;"></span>+33 6 88 88 88 88</p></li>
-              <li><p><span class="glyphicon glyphicon-envelope one" style="width:50px;"></span><%=@user.email%></p></li>
-              <li><p><span class="glyphicon glyphicon-map-marker one" style="width:50px;"></span><%=@user.description%></p></li>
-            </ul>
-             <% if current_user.id == @user.id %>
-              <%= link_to 'Modifier tes Infos', edit_user_path(@user) %>  |
-              <%= link_to "Modifier ton mot de passe", edit_user_registration_path(@user) %> |   
-              <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete %> |   
-              <%= link_to 'Supprimer', users_path(@event), method: :delete, data: { confirm: 'Are you sure?' }  %>
-            <% end %>
-        </div>
-    </div>
-  </div>
+ <div class="contact1">
+  <div class="container emp-profile">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                          <%if @user.avatar.attached?%>
+                          <%= image_tag @user.avatar, style: "width:200px;height:200px", alt: 'avatar' %>
+                          <%else%>
+                          <%= image_tag "profile_picture.jpg", style: "width:300px;height:300px" %>
+                          <%end%> 
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                                    <h5>
+                                        <%=@user.first_name%> <%=@user.last_name%>
+                                    </h5>
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Infos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Ateliers</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                          <% if current_user.id == @user.id %>
+                            <%= link_to 'Modifier Infos', edit_user_path(@user), class: "profile-edit-btn" %><br>
+                            <%= link_to "Modifier mot de passe", edit_user_registration_path(@user), class: "profile-edit-btn" %><br>
+                            <%= link_to "Se déconnecter", destroy_user_session_path, class: "profile-edit-btn", method: :delete %><br>
+                            <%= link_to 'Supprimer', users_path(@event), method: :delete, data: { confirm: 'Are you sure?' }, class: "profile-edit-btn"  %>
+                          <% end %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-work">
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>User Id</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p><%=@user.id%></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Prénom</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p><%=@user.first_name%></p>
+                                            </div>
+                                        </div>
+                                         <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Nom</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p><%=@user.last_name%></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Email</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p><%=@user.email%></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Téléphone</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>+33 6 88 88 88 88</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Description</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p><%=@user.description%></p>
+                                            </div>
+                                        </div>
+                            </div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            </div>
+                        </div>
+                    </div>
+                </div>          
+           </div>
+          </div>
             
