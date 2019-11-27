@@ -64,8 +64,35 @@ a:hover {
 }
 
 /*---------------------------------------------*/
-h1,h2,h3,h4,h5,h6 {
-	margin: 0px;
+h1 {
+  margin: 0px;
+  font-family: Pacifico !important;
+  font-size: 35px !important; 
+  font-style: normal !important; 
+  font-variant: normal !important; 
+  font-weight: 700 !important; 
+  line-height: 26.4px !important;
+  color: #24938C !important;
+}
+
+h2,h3,h5,h6 {
+  margin: 0px;
+  font-family: Pacifico !important;
+  font-size: 24px !important; 
+  font-style: normal !important; 
+  font-variant: normal !important; 
+  font-weight: 700 !important; 
+  line-height: 26.4px !important;
+  color: #24938C !important;
+}
+h4 {
+  margin: 0px;
+  font-family: Pacifico !important;
+  font-size: 24px !important; 
+  font-style: normal !important; 
+  font-variant: normal !important; 
+  font-weight: 700 !important; 
+  line-height: 26.4px !important;
 }
 
 p {
@@ -122,6 +149,11 @@ iframe {
 	border: none !important;
 }
 
+.btn-luc {
+  background: #24938C !important;
+  color: white !important;
+  outline: none !important;
+} 
 
 
 
@@ -133,11 +165,11 @@ iframe {
   min-height: 100%;
   padding: 15px;
 
-  background: #009bff;
-  background: -webkit-linear-gradient(left, #0072ff, #00c6ff);
-  background: -o-linear-gradient(left, #0072ff, #00c6ff);
-  background: -moz-linear-gradient(left, #0072ff, #00c6ff);
-  background: linear-gradient(left, #0072ff, #00c6ff);
+  background: #24938C;
+  background: -webkit-linear-gradient(left, #24938C, #24938C);
+  background: -o-linear-gradient(left, #24938C, #24938C);
+  background: -moz-linear-gradient(left, #24938C, #24938C);
+  background: linear-gradient(left, #24938C, #24938C);
 
   display: -webkit-box;
   display: -webkit-flex;
@@ -277,7 +309,7 @@ textarea.input1 + .shadow-input1 {
   min-width: 193px;
   height: 50px;
   border-radius: 25px;
-  background: #57b846;
+  background: #24938C;
   font-family: Montserrat-Bold;
   font-size: 15px;
   line-height: 1.5;
