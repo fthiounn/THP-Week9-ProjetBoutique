@@ -14,8 +14,8 @@ class CartItemsController < ApplicationController
 
   # GET /cart_items/new
   def new
-    puts "******" *800
-  create
+    puts "******"*200
+    create
   end
 
   # GET /cart_items/1/edit
@@ -25,11 +25,12 @@ class CartItemsController < ApplicationController
   # POST /cart_items
   # POST /cart_items.json
   def create
+    @cart_id = Cart.where(user_id: current_user.id).first.id
     puts current_user.id
     @cart_item = CartItem.new(
-      cart_id: Cart.where(user_id: current_user.id).id,
-      item_id: params[:item_id])
-    redirect_to cart_path(Cart.find(current_cart_id))
+      cart_id: @cart_id,
+    item_id: params[:item_id])
+    redirect_to cart_path(@cart_id)
   end
 
   # PATCH/PUT /cart_items/1
@@ -57,13 +58,13 @@ class CartItemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_cart_item
-      @cart_item = CartItem.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_cart_item
+    @cart_item = CartItem.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def cart_item_params
-      params.fetch(:cart_item, {})
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def cart_item_params
+    params.fetch(:cart_item, {})
+  end
 end

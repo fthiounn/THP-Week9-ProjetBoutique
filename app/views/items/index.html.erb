@@ -1,65 +1,58 @@
 <% content_for :title, "Accueil" %>
 <!-- Page Content -->
-  <div class="container">
-
-    <div class="row">
-    
-      <div class="col-lg-3">
-
-        <h1 class="my-4">La Fabrique des Castors</h1>
-        <div class="list-group">
-          <a href="#" class="list-group-item">Category 1</a>
-          <a href="#" class="list-group-item">Category 2</a>
-          <a href="#" class="list-group-item">Category 3</a>
-        </div>
-
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+      <h1 class="my-4">La Fabrique des Castors</h1>
+      <div class="list-group">
+        <a href="#" class="list-group-item">Category 1</a>
+        <a href="#" class="list-group-item">Category 2</a>
+        <a href="#" class="list-group-item">Category 3</a>
       </div>
-      <!-- /.col-lg-3 -->
-
-      <div class="col-lg-9">
-
-        <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
-          <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-          </ol>
-          <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active">
-              <%= image_tag "beaume.jpg", class:"d-block img-fluid", style:"width:930px;height:500px;", alt:"First slide" %>
-            </div>
-            <div class="carousel-item">
-              <%= image_tag "cream.jpg", class:"d-block img-fluid", style:"width:930px;height:500px;", alt:"First slide" %>
-            </div>
-            <div class="carousel-item">
-              <%= image_tag "products.jpg", class:"d-block img-fluid", style:"width:930px;height:500px;", alt:"First slide" %>
-            </div>
+    </div>
+    <!-- /.col-lg-3 -->
+    <div class="col-lg-9">
+      <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+          <div class="carousel-item active">
+            <%= image_tag "beaume.jpg", class:"d-block img-fluid", style:"width:930px;height:500px;", alt:"First slide" %>
           </div>
-          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
+          <div class="carousel-item">
+            <%= image_tag "cream.jpg", class:"d-block img-fluid", style:"width:930px;height:500px;", alt:"First slide" %>
+          </div>
+          <div class="carousel-item">
+            <%= image_tag "products.jpg", class:"d-block img-fluid", style:"width:930px;height:500px;", alt:"First slide" %>
+          </div>
         </div>
-
-        <div class="row">
-         <% @items.reverse_each do |item|  %> 
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+      <div class="row">
+        <% @items.reverse_each do |item|  %>
           <div class="col-lg-4 col-md-6 mb-4">
-          <div class="card h-100">
+            <div class="card h-100">
               <%= button_to item, class:"card-body",method: :get do %>
                 <h4 class="card-title">
                   <h3><%= item.title %></h3>
                 </h4>
                 <h4><%=item.price%> €</h4>
                 <p class="card-text"><%=item.description%></p>
-              <div>
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-              <label for="q">Quantité: </label>
-              <select id="qt" name="q">
+                <div>
+                  <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                </div>
+                <label for="q">Quantité: </label>
+                <select id="qt" name="q">
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -69,21 +62,17 @@
                   <option value="7">7</option>
                   <option value="8">8</option>
                   <option value="9">9</option>
-              </select>
-              <%= button_to "Ajouter au panier", item_cart_items_path(:item_id), method: :post,class: "btn btn-luc" %>
-            <%end%>
+                </select>
+                <%= link_to "Ajouter au panier", new_item_cart_item_path(item),class: "btn btn-luc" %>
+              <%end%>
             </div>
-            </div>
-          <%end%>
-
-        </div>
-        <!-- /.row -->
-
+          </div>
+        <%end%>
       </div>
-      <!-- /.col-lg-9 -->
-
+      <!-- /.row -->
     </div>
-    <!-- /.row -->
-
+    <!-- /.col-lg-9 -->
   </div>
-  <!-- /.container -->
+  <!-- /.row -->
+</div>
+<!-- /.container -->
