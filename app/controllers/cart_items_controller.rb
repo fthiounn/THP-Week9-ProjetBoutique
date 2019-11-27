@@ -14,7 +14,6 @@ class CartItemsController < ApplicationController
 
   # GET /cart_items/new
   def new
-    puts "******"*200
     create
   end
 
@@ -27,7 +26,7 @@ class CartItemsController < ApplicationController
   def create
     @cart_id = Cart.where(user_id: current_user.id).first.id
     puts current_user.id
-    @cart_item = CartItem.new(
+    @cart_item = CartItem.create(
       cart_id: @cart_id,
     item_id: params[:item_id])
     redirect_to cart_path(@cart_id)
