@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   resources :users
   resources :charges
   resources :contacts, only: [:new, :create]
+  resources :teams, only: [:new]
   root to: "items#index"
 end
