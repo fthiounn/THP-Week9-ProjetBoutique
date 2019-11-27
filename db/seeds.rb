@@ -22,7 +22,7 @@ nb_items.times do |x|
     title: "Atelier à " + Faker::Address.city,
     description: Faker::Lorem.paragraph_by_chars(number: 200, supplemental: false),
     price: rand(1..20))
-    downloaded_image = open("https://picsum.photos/200/300")
+    downloaded_image = open("http://lorempixel.com/900/400")
     item.avatar.attach(io: downloaded_image  , filename: "faker.jpg")
     puts "seeding item nb #{x}"
 end

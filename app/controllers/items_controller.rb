@@ -67,7 +67,6 @@ class ItemsController < ApplicationController
      @item = Item.find_by(title: params[:search])
       flash[:success] = "Atelier found !"
       redirect_to @item
-
     else
       flash[:danger] = "Atelier doesn't exist !"
       render :controller => 'items', :action => 'index'
