@@ -18,7 +18,7 @@
         <h4>Les villes présentes </h4>
         <div class="list-group">
         <% @cities.reverse_each do |city| %>
-        <%= link_to city.city, cities_path(city),class: "list-group-item" %>
+        <%= link_to city.city, city_path(city),class: "list-group-item" %>
         <% end %>
       </div>
       </div>
