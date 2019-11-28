@@ -69,7 +69,7 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'font-awesome-sass', '~> 5.11.2'
 gem 'table_print'
 gem 'dotenv-rails'
-
+gem "font-awesome-rails"
 gem "aws-sdk-s3", require: false
 gem 'aws-sdk-rails'
 gem 'aws-ses', '~> 0.4.4', require: 'aws/ses'

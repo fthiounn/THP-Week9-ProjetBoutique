@@ -4,7 +4,7 @@
     <a class="navbar-brand">
       <%= image_tag "navlogo.png", style: "width:46px;height:46px" %>
     </a>
-    <h1><%= link_to "Accueil", root_path, :class => "navbar-brand" %></h1>
+    <h1><%= link_to "La Fabriques des Castors", root_path, :class => "navbar-brand" %></h1>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -20,14 +20,16 @@
           <li class="nav-item">
             <h1><%= link_to "MON COMPTE" , user_path(current_user.id), :class => "nav-link" %></h1>
           </li>
+          <li class="nav-item">
+          <%= link_to(cart_path(current_cart_id), html_options = {class:"nav-link"}) do%>
+          <i class="fas fa-shopping-cart"></i>
+          <% end %>
+        </li>
         <%else%>
           <li class="nav-item">
             <%= link_to "S'IDENTIFIER" , '#',:id => "login", :class => "nav-link signup" %>
           </li>
         <%end%>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i></a>
-        </li>
       </ul>
     </div>
   </div>

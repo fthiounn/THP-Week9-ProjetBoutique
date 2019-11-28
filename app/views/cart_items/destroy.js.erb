@@ -1,0 +1,4 @@
+$(document).ready(function(){
+  $("#line-<%=@cart_item_id%>").remove();
+  $("#cart-item-total-price").text("<%= number_to_euro(@cart.get_price)%>");
+});

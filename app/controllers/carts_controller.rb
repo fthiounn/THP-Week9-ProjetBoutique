@@ -1,5 +1,7 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:show, :edit, :update]
+  before_action :is_owner?, only: [:show, :edit, :update, :destroy]
 
   # GET /carts
   # GET /carts.json
@@ -10,6 +12,8 @@ class CartsController < ApplicationController
   # GET /carts/1
   # GET /carts/1.json
   def show
+    @cart_item = CartItem.where(cart_id: @cart.id)
+    @user = User.find(@cart.user_id)
   end
 
   # GET /carts/new
@@ -25,7 +29,6 @@ class CartsController < ApplicationController
   # POST /carts.json
   def create
     @cart = Cart.new(cart_params)
-
     respond_to do |format|
       if @cart.save
         format.html { redirect_to @cart, notice: 'Cart was successfully created.' }
@@ -54,21 +57,29 @@ class CartsController < ApplicationController
   # DELETE /carts/1
   # DELETE /carts/1.json
   def destroy
-    @cart.destroy
+    @cart_id = Cart.where(user_id: current_user.id).first.id
+    CartItem.where(cart_id: @cart_id).destroy_all
     respond_to do |format|
-      format.html { redirect_to carts_url, notice: 'Cart was successfully destroyed.' }
+      format.html { redirect_to @cart, notice: 'Cart was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_cart
-      @cart = Cart.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_cart
+    @cart = Cart.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def cart_params
-      params.fetch(:cart, {})
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def cart_params
+    params.fetch(:cart, {})
+  end
+
+  def is_owner?
+    if current_user.id.to_i != params[:id].to_i
+      flash[:danger] = "You can't acces this page"
+      redirect_to "/"
     end
+  end
 end

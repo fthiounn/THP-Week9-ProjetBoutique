@@ -1,4 +1,61 @@
-<p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_cart_path(@cart) %> |
-<%= link_to 'Back', carts_path %>
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h1 class="m-0 font-weight-bold m-5">Le Panier du Castor</h1>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th  class="text-center">Quantity</th>
+            <th  class="text-right">Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>TOTAL</th>
+            <th id="cart-item-total-price"><%= number_to_euro(@cart.get_price) %></th>
+            <th></th>
+            <th class="text-center">
+              <%= link_to @cartitems, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <i class="fa fa-trash-alt text-danger"></i>
+              <% end %>
+              <p> Supprimer panier</p>
+            </th>
+            <th class="text-center">
+              <%= link_to new_charge_path do %>
+                <i class="fas fa-shopping-cart"></i>
+              <% end %>
+              <p> Passer commande</p>
+            </th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <% @cart_item.each do |cart_item|  %>
+            <tr id="line-<%=cart_item.id%>">
+              <td><%= cart_item.get_item.title %></td>
+              <td><%= number_to_euro(cart_item.get_item.price)%></td>
+              <td class="text-center">
+                <%= link_to item_cart_item_path(cart_item,item_id: cart_item.item_id, value: -1, intent: 'quantity'), remote: true, :method => :put do %>
+                  <i class="fas fa-minus-circle mr-3"></i>
+                <% end %>
+                <span id="quantity-<%=cart_item.id%>"><%= cart_item.quantity %></span>
+                <%= link_to item_cart_item_path(cart_item, value: 1,item_id: cart_item.item_id, intent: 'quantity'), remote: true, :method => :put do %>
+                  <i class="fas fa-plus-circle ml-3"></i>
+                <% end %>
+              </td>
+              <td class="text-right" id="item-total-<%=cart_item.id%>"><%= number_to_euro(cart_item.get_price) %></td>
+              <td class="text-center">
+                <%= link_to item_cart_item_path(cart_item,id: cart_item.id), remote: true, :method => :delete, data: { confirm: 'Are you sure?' } do %>
+                  <i class="fas fa-trash-alt text-danger"></i>
+                <% end %></td>
+            </tr>
+          <%end%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -13,9 +13,9 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require jquery-3.2.1.min
-//= require popper
-//= require bootstrap.min
-//= require select2.min
-//= require tilt.jquery.min
+//= require assets/javascripts/jquery-3.2.1.min
+//= require assets/javascripts/popper
+//= require assets/javascripts/select2.min
+//= require assets/javascripts/tilt.jquery.min
+//= require assets/javascripts/bootstrap.min
 //= require modales

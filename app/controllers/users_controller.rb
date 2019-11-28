@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, only: [:show, :edit, :update, :destroy]
+  before_action :is_owner, only: [:edit, :update, :destroy]
   # GET /users
   # GET /users.json
   def index
@@ -30,10 +31,10 @@ class UsersController < ApplicationController
                     email: params[:mail])
     
     if params[:password] != params[:confirmpassword]
-      flash.now[:danger] = "Passwords must match !"
+      flash.now[:danger] = "Ton mot de passe doit faire 6 carractères !"
       render :action => 'new' 
     end
-    if @user.save # essaie de sauvegarder en base @gossip
+    if @user.save 
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
         flash[:success] = "You successfuly created your account"
@@ -80,5 +81,12 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.fetch(:user, {})
+    end
+
+    def is_owner
+      if current_user.id.to_i != params[:id].to_i
+        flash[:danger] = "You can't acces this page"
+        redirect_to "/"
+      end
     end
 end
