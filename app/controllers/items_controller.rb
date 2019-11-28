@@ -31,12 +31,14 @@ class ItemsController < ApplicationController
     else
       @city = City.create(city: params[:city])
     end
-
+    puts "hello"
+    puts params[:item][:price].first
+    puts params[:date]
     @item = Item.new(title: params[:title],
                      description: params[:description],
                      city_id: @city.id,
-                     price: params[:price],
-                     date: params[:date])
+                     price: params[:item][:price],
+                     date: DateTime.parse(params[:date].first))
     if @item.save # essaie de sauvegarder en base @gossip
       redirect_to :controller => 'items', :action => 'show', id: @item.id, notice: 'Item was successfully added.'
     else
