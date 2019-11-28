@@ -20,9 +20,9 @@
     <div class="col-lg-9">
       <div class="card mt-4">
         <% if @item.avatar.attached? %>
-          <%= image_tag item.avatar, class:"card-img-top", style:"width:253px;height:200px;"%>
+          <%= image_tag @item.avatar, class:"card-img-top"%>
         <% else %>
-          <%= image_tag "https://sortir-prod.s3.amazonaws.com/uploads/events/covers/medium/06ca5db894449287b5a6b44ec62eae56e2011ba0.jpg?1527686886", style:"width:253px;height:200px;"%>
+          <%= image_tag "http://africa24.info/wp-content/uploads/2018/12/kim-900x400.jpg"%>
         <%end%>
         <div class="card-body">
           <h3 class="card-title"><%=@item.title%></h3>
