@@ -41,7 +41,7 @@ t2 = Time.parse("2022-01-01 00:00:00")
 
 nb_items.times do |x|
   item = Item.create(
-    title: "Atelier à " + Faker::Address.city,
+    title: "Atelier " + Faker::Beer.brand,
     description: Faker::Lorem.paragraph_by_chars(number: 200, supplemental: false),
     price: rand(1..20),
     city_id: City.all.sample.id,
