@@ -15,10 +15,11 @@ class UserMailer < ApplicationMailer
 
   def order_confirmation_email(user, order)
     @user = user 
+    @cart = Cart.where(user_id: @user.id).first
     @order = order
-    @items = CartItem.where(user_id: @cart.user_id)
+    @items = CartItem.where(cart_id: @cart.id)
     @url = 'http://monsite.fr/orderconfirmation'
-    mail(to: @user.mail, subject: 'Confirmation de commande')
+    mail(to: @user.email, subject: 'Confirmation de commande')
     copy_order_admin(@user, @order, @items)
   end
   

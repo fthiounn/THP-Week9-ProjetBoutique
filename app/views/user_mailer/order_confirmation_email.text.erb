@@ -1,9 +1,9 @@
-<%= @user.name %> ta commande a bien été pris en compte !
+<%= @user.first_name %> ta commande a bien été pris en compte !
 ==========================================================
  
 Voici le contenu de ta commande:
-<% @Items.each do |i| %>
-  - <%= i.title %>
+<% @items.each do |i| %>
+  - <%= i.get_item.title %>
   <% end %>
   
  

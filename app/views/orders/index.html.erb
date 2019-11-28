@@ -1,69 +1,43 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Orders</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @orders.each do |order| %>
-      <tr>
-
-        <div class="pb-5">
-    <div class="container">
-      <div class="row">
-       <% @orders.each do |order|  %>
-        <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
-          <!-- Shopping cart table -->
-          <div class="table-responsive">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col" class="border-0 bg-light">
-                    <div class="p-2 px-3 text-uppercase"><%=@order.title%></div>
-                  </th>
-                  <th scope="col" class="border-0 bg-light">
-                    <div class="py-2 text-uppercase"><%=@order.price%>€</div>
-                  </th>
-                  <th scope="col" class="border-0 bg-light">
-                    <div class="py-2 text-uppercase"><%=@order.quantity%></div>
-                  </th>
-                  <th scope="col" class="border-0 bg-light">
-                    <div class="py-2 text-uppercase">Enlever</div>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row" class="border-0">
-                    <div class="p-2">
-                    <%= image_tag @order.avatar, class:"img-fluid rounded shadow-sm", style:"width:70;"%>
-                      <div class="ml-3 d-inline-block align-middle">
-                        <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">Timex Unisex Originals</a></h5><
-                      </div>
-                    </div>
-                  </th>
-                  <% end %>
-
-                  <td class="border-0 align-middle"><strong>order.totalprice</strong></td>
-                  <td class="border-0 align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a></td>
-                </tr>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+<div class="container m-5">
+  <div class="row">
+    <div class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+            <div class="row">
+                <div class="text-center">
+                    <h1> Historique de tes commandes </h1>
+                </div>
+                </span>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Produirs</th>
+                            <th>Quantité</th>
+                            <th class="text-center">Prix</th>
+                            <th class="text-center">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <% @orderItems.each do |orderitem|  %>
+                            <td class="col-md-9"><em><%= get_item(orderitem.item_id).title %> </em></h4></td>
+                            <td class="col-md-1" style="text-align: center"> <%= orderitem.quantity %>  </td>
+                            <td class="col-md-1 text-center"> <%= get_item(orderitem.item_id).price %></td>
+                            <td class="col-md-1 text-center"><%= get_item(orderitem.item_id).price * orderitem.quantity%> €</td>
+                        </tr>
+                        <% end %>
+                        <tr>
+                        <tr>
+                            <td>   </td>
+                            <td>   </td>
+                            <td class="text-right"><h4><strong>Total: </strong></h4></td>
+                            <td class="text-center text-danger"><h4><strong><%= @totalprice %> € </strong></h4></td>
+                        </tr>
+                    </tbody>
+                </table>
+                </td>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  <% end %>
-  </tbody>
-</table>
-
-<br>
 
 <%= link_to 'New Order', new_order_path %>

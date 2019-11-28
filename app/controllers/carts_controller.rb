@@ -1,6 +1,8 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:show, :edit, :update]
+  before_action :is_owner?, only: [:show, :edit, :update, :destroy]
+
   # GET /carts
   # GET /carts.json
   def index
@@ -10,10 +12,8 @@ class CartsController < ApplicationController
   # GET /carts/1
   # GET /carts/1.json
   def show
-    @cart_id = Cart.where(user_id: current_user.id).first.id
-    @items = Item.where(id: CartItem.select(:item_id).where(cart_id: @cart_id))
+    @cart_item = CartItem.where(cart_id: @cart.id)
     @user = User.find(@cart.user_id)
-    @totalprice = totalprice(@items)
   end
 
   # GET /carts/new
@@ -76,14 +76,10 @@ class CartsController < ApplicationController
     params.fetch(:cart, {})
   end
 
-  def totalprice(items)
-    @totalprice = 0
-    items.each do |i|
-      puts "$$$$$$$$$$$$$" * 100
-      puts i.price
-      puts "$$$$$$$$$$$$$" * 100
-      @totalprice += ( i.price )
+  def is_owner?
+    if current_user.id.to_i != params[:id].to_i
+      flash[:danger] = "Pas de compte ? Pas d'panier"
+      redirect_to "/"
     end
-    return @totalprice
   end
 end
