@@ -70,7 +70,10 @@
 
                 </form>
                 -->
+
+                <% if user_signed_in? %>
                 <%= link_to "Ajouter au panier", new_item_cart_item_path(item, quantity: 1),class: "btn btn-luc btn-quantity" %>
+                <% end %>
               <%end%>
             </div>
           </div>
