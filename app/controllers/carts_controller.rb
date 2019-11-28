@@ -78,7 +78,7 @@ class CartsController < ApplicationController
 
   def is_owner?
     if current_user.id.to_i != params[:id].to_i
-      flash[:danger] = "Pas de compte ? Pas d'panier"
+      flash[:danger] = "You can't acces this page"
       redirect_to "/"
     end
   end
