@@ -10,6 +10,10 @@ class CartsController < ApplicationController
   # GET /carts/1
   # GET /carts/1.json
   def show
+    @cart_id = Cart.where(user_id: current_user.id).first.id
+    @items = Item.where(id: CartItem.select(:item_id).where(cart_id: @cart_id))
+    @user = User.find(@cart.user_id)
+    @totalprice = totalprice(@items)
   end
 
   # GET /carts/new
@@ -54,21 +58,33 @@ class CartsController < ApplicationController
   # DELETE /carts/1
   # DELETE /carts/1.json
   def destroy
-    @cart.destroy
+    @cart_id = Cart.where(user_id: current_user.id).first.id
+    CartItem.where(cart_id: @cart_id).destroy_all
     respond_to do |format|
-      format.html { redirect_to carts_url, notice: 'Cart was successfully destroyed.' }
+      format.html { redirect_to @cart, notice: 'Cart was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_cart
-      @cart = Cart.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_cart
+    @cart = Cart.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def cart_params
-      params.fetch(:cart, {})
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def cart_params
+    params.fetch(:cart, {})
+  end
+
+  def totalprice(items)
+    @totalprice = 0
+    items.each do |i|
+      puts "$$$$$$$$$$$$$" * 100
+      puts i.price
+      puts "$$$$$$$$$$$$$" * 100
+      @totalprice += ( i.price )
     end
+    return @totalprice
+  end
 end

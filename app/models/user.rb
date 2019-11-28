@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates :description, presence: true, length: { minimum: 10 }
   has_one_attached :avatar
   after_create :welcome_send
+  after_create :creation_cart
 
   def welcome_send
     UserMailer.welcome_email(self).deliver_now

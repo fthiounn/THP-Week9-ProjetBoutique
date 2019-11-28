@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+  <%= @user.name %> ta commande a bien été pris en compte !
+    <p>
+    Voici le contenu de ta commande:
+    <% @Items.each do |i| %>
+      - <%= i.title %>
+      <% end %>
+    </p>
+    <p>
+    Conserve bien cet email, il te permettra d'accéder à l'atelier sans crainte ;)
+    </p>
+    <p> À très bientôt !
+    </p>
+  </body>
+</html>

@@ -14,7 +14,7 @@ class CartItemsController < ApplicationController
 
   # GET /cart_items/new
   def new
-    @cart_item = CartItem.new
+    create
   end
 
   # GET /cart_items/1/edit
@@ -24,17 +24,17 @@ class CartItemsController < ApplicationController
   # POST /cart_items
   # POST /cart_items.json
   def create
-    @cart_item = CartItem.new(cart_item_params)
-
-    respond_to do |format|
-      if @cart_item.save
-        format.html { redirect_to @cart_item, notice: 'Cart item was successfully created.' }
-        format.json { render :show, status: :created, location: @cart_item }
-      else
-        format.html { render :new }
-        format.json { render json: @cart_item.errors, status: :unprocessable_entity }
-      end
+    @cart_id = Cart.where(user_id: current_user.id).first.id
+    #CHECK if the item is alrady here
+    if CartItem.where(cart_id: @cart_id,item_id: params[:item_id]).blank? then
+      #if not
+      CartItem.create(cart_id: @cart_id, item_id: params[:item_id], quantity: params[:quantity])
+    else
+      #else, add the number
+      qte = CartItem.where(cart_id: @cart_id,item_id: params[:item_id]).first.quantity + params[:quantity].to_i
+      CartItem.update(quantity: qte)
     end
+    redirect_to cart_path(@cart_id)
   end
 
   # PATCH/PUT /cart_items/1
@@ -62,13 +62,13 @@ class CartItemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_cart_item
-      @cart_item = CartItem.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_cart_item
+    @cart_item = CartItem.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def cart_item_params
-      params.fetch(:cart_item, {})
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def cart_item_params
+    params.fetch(:cart_item, {})
+  end
 end

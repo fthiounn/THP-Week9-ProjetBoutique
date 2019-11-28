@@ -12,11 +12,55 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+
+        <div class="pb-5">
+    <div class="container">
+      <div class="row">
+       <% @orders.each do |order|  %>
+        <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
+          <!-- Shopping cart table -->
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="p-2 px-3 text-uppercase"><%=@order.title%></div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase"><%=@order.price%>€</div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase"><%=@order.quantity%></div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">Enlever</div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row" class="border-0">
+                    <div class="p-2">
+                    <%= image_tag @order.avatar, class:"img-fluid rounded shadow-sm", style:"width:70;"%>
+                      <div class="ml-3 d-inline-block align-middle">
+                        <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">Timex Unisex Originals</a></h5><
+                      </div>
+                    </div>
+                  </th>
+                  <% end %>
+
+                  <td class="border-0 align-middle"><strong>order.totalprice</strong></td>
+                  <td class="border-0 align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a></td>
+                </tr>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
   </tbody>
 </table>
 

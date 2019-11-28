@@ -10,11 +10,17 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
+    @items = OrderItem.where(order_id: @order.id)
+    puts "*****************" *50
+    puts @items
+
+    @items = Item.where(id: OrderItem.select(:item_id).where(order_id: @order.id))
+    @totalprice = totalprice(@items)
   end
 
   # GET /orders/new
   def new
-    @order = Order.new
+    create
   end
 
   # GET /orders/1/edit
@@ -24,17 +30,19 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = Order.new(order_params)
-
-    respond_to do |format|
-      if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
-        format.json { render :show, status: :created, location: @order }
-      else
-        format.html { render :new }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
-      end
+    # creer un order
+    @order = Order.create(user_id: current_user.id)
+    @cart_id = Cart.where(user_id: current_user.id).first.id
+    @item = Item.where(id: CartItem.select(:item_id).where(cart_id: @cart_id))
+    # qjouter tous les items du cqrt dqns OrderItems
+    @item.each do |item|
+      qte = CartItem.where(cart_id: @cart_id, item_id: item.id).first.quantity
+      OrderItem.create(order_id: @order.id, item_id: item.id, quantity: qte)
     end
+    # vider le cart
+    CartItem.where(cart_id: @cart_id).destroy_all
+   
+    redirect_to order_path(@order)
   end
 
   # PATCH/PUT /orders/1
@@ -48,7 +56,7 @@ class OrdersController < ApplicationController
         format.html { render :edit }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
-    end
+    end 
   end
 
   # DELETE /orders/1
@@ -71,4 +79,16 @@ class OrdersController < ApplicationController
     def order_params
       params.fetch(:order, {})
     end
+
+    def totalprice(items)
+    @totalprice = 0
+    items.each do |i|
+      puts "$$$$$$$$$$$$$" * 100
+      puts i.price
+      puts "$$$$$$$$$$$$$" * 100
+      @totalprice += ( i.price )
+    end
+    return @totalprice
+  end
+  
 end
