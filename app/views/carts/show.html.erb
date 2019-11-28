@@ -1,4 +1,86 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" class="border-0 bg-light">
+            <div class="p-2 px-3 text-uppercase">Product</div>
+              </th>
+                <th scope="col" class="border-0 bg-light">
+                  <div class="py-2 text-uppercase">Price</div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">Quantity</div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">Remove</div>
+                  </th>
+                </tr>
+              </thead>
+           </table>
+       </div>
 
-<%= link_to 'Edit', edit_cart_path(@cart) %> |
-<%= link_to 'Back', carts_path %>
+<% @items.each do |item|  %>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" class="border-0">
+            <div class="p-2 px-3 text-uppercase"><%= image_tag item.avatar, class:"img-fluid rounded shadow-sm", style:"width:70px;"%>
+            </div>
+            <p><%=item.title%></p>
+              </th>
+                <th scope="col" class="border-0">
+                  <div class="py-2 text-uppercase"><%=item.price%> €</div>
+                  </th>
+                  <th scope="col" class="border-0">
+                    <div class="py-2 text-uppercase">Quantity</div>
+                  </th>
+                  <th scope="col" class="border-0">
+                    <div class="py-2 text-uppercase"><%= link_to 'supprimer', @cartitems, method: :delete, data: { confirm: 'Are you sure?' } %> <i class="fas fa-trash-alt"></i> </div>
+                  </th>
+                </tr>
+              </thead>
+              </table>
+              </div>
+        <% end %>
+
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" class="border-0 bg-light">
+            <div class="p-2 px-3 text-uppercase">                       TOTAL</div>
+              </th>
+                <th scope="col" class="border-0 bg-light">
+                  <div class="py-2 text-uppercase"><%= @totalprice %> € </div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase"> </div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase"><%= link_to 'Supprimer panier', @cartitems, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <i class="fas fa-trash-alt"></i></div>
+                  </th>
+                    <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase"><%= link_to 'Passer commande', new_charge_path(totalprice: @totalprice) %> <i class="fas fa-shopping-bag"></i> </div>
+                  </th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+
+
+                      
+
+
+
+
+
+
+
+
+
+
+                   

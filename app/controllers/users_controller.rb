@@ -33,7 +33,7 @@ class UsersController < ApplicationController
       flash.now[:danger] = "Passwords must match !"
       render :action => 'new' 
     end
-    if @user.save # essaie de sauvegarder en base @gossip
+    if @user.save 
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
         flash[:success] = "You successfuly created your account"
