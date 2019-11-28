@@ -10,12 +10,12 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
-    @items = OrderItem.where(order_id: @order.id)
-    puts "*****************" *50
-    puts @items
-
+    @orderItems = OrderItem.where(order_id: @order.id)
     @items = Item.where(id: OrderItem.select(:item_id).where(order_id: @order.id))
-    @totalprice = totalprice(@items)
+    puts "items vqriqble controller"
+    puts @items
+    @totalprice = totalprice(@orderItems)
+
   end
 
   # GET /orders/new
@@ -80,13 +80,10 @@ class OrdersController < ApplicationController
       params.fetch(:order, {})
     end
 
-    def totalprice(items)
+    def totalprice(orderItems)
     @totalprice = 0
-    items.each do |i|
-      puts "$$$$$$$$$$$$$" * 100
-      puts i.price
-      puts "$$$$$$$$$$$$$" * 100
-      @totalprice += ( i.price )
+    orderItems.each do |i|
+      @totalprice += ( Item.find(i.item_id).price * i.quantity )
     end
     return @totalprice
   end
