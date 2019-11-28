@@ -10,10 +10,15 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require rails-ujs
+//= require activestorage
+//= require turbolinks
+//= require assets_users_admin/javascripts/jquery.min
 //= require assets_users_admin/javascripts/bootstrap.bundle.min
+//= require assets_users_admin/javascripts/jquery.easing.min
+//= require assets_users_admin/javascripts/sb-admin-2.min
+//= require assets_users_admin/javascripts/Chart.min
 //= require assets_users_admin/javascripts/chart-area-demo
 //= require assets_users_admin/javascripts/chart-pie-demo
-//= require assets_users_admin/javascripts/Chart.min
-//= require assets_users_admin/javascripts/jquery.easing.min
-//= require assets_users_admin/javascripts/jquery.min
-//= require assets_users_admin/javascripts/sb-admin-2.min
+
+

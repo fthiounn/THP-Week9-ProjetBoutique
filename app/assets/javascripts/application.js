@@ -17,4 +17,5 @@
 //= require assets/javascripts/popper
 //= require assets/javascripts/select2.min
 //= require assets/javascripts/tilt.jquery.min
+//= require assets/javascripts/bootstrap.min
 //= require modales
