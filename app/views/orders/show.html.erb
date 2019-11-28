@@ -23,8 +23,8 @@
               <td class="col-md-9"><em><%= orderitem.get_item.title %> </em></h4>
             </td>
             <td class="col-md-1" style="text-align: center"> <%= orderitem.quantity %>  </td>
-            <td class="col-md-1 text-center"> <%= orderitem.get_item.price %></td>
-            <td class="col-md-1 text-center"><%= orderitem.get_price %> €</td>
+            <td class="col-md-1 text-center"> <%= number_to_euro(orderitem.get_item.price) %></td>
+            <td class="col-md-1 text-center"><%= number_to_euro(orderitem.get_price) %></td>
           </tr>
         <% end %>
         <tr>
@@ -35,7 +35,7 @@
               <h4><strong>Total: </strong></h4>
             </td>
             <td class="text-center text-danger">
-              <h4><strong><%= @order.get_price %> € </strong></h4>
+              <h4><strong><%= number_to_euro(@order.get_price) %></strong></h4>
             </td>
           </tr>
         </tbody>

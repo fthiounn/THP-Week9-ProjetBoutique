@@ -17,7 +17,7 @@
         <tfoot>
           <tr>
             <th>TOTAL</th>
-            <th id="cart-item-total-price"><%= @cart.get_price %> € </th>
+            <th id="cart-item-total-price"><%= number_to_euro(@cart.get_price) %></th>
             <th></th>
             <th class="text-center">
               <%= link_to @cartitems, method: :delete, data: { confirm: 'Are you sure?' } do %>
@@ -35,9 +35,9 @@
         </tfoot>
         <tbody>
           <% @cart_item.each do |cart_item|  %>
-            <tr id="line-<%=cart_item.id%>"=>
+            <tr id="line-<%=cart_item.id%>">
               <td><%= cart_item.get_item.title %></td>
-              <td><%= cart_item.get_item.price %> €</td>
+              <td><%= number_to_euro(cart_item.get_item.price)%></td>
               <td class="text-center">
                 <%= link_to item_cart_item_path(cart_item,item_id: cart_item.item_id, value: -1, intent: 'quantity'), remote: true, :method => :put do %>
                   <i class="fas fa-minus-circle mr-3"></i>
@@ -47,7 +47,7 @@
                   <i class="fas fa-plus-circle ml-3"></i>
                 <% end %>
               </td>
-              <td class="text-right" id="item-total-<%=cart_item.id%>"><%= cart_item.get_price %> €</td>
+              <td class="text-right" id="item-total-<%=cart_item.id%>"><%= number_to_euro(cart_item.get_price) %></td>
               <td class="text-center">
                 <%= link_to item_cart_item_path(cart_item,id: cart_item.id), remote: true, :method => :delete, data: { confirm: 'Are you sure?' } do %>
                   <i class="fas fa-trash-alt text-danger"></i>

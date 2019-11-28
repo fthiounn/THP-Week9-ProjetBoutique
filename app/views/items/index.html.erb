@@ -48,6 +48,7 @@
         <% @items.reverse_each do |item|  %>
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
+            <%= image_tag item.avatar, class:"card-img-top", style:"width:253px;height:200px;"%>
               <%= button_to item, class:"card-body",method: :get do %>
                 <h4 class="card-title">
                   <h3><%= item.title %></h3>
