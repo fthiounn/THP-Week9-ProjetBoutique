@@ -1,0 +1,12 @@
+<%= @user.first_name %> ta commande a bien été pris en compte !
+==========================================================
+ 
+Voici le contenu de ta commande:
+<% @items.each do |i| %>
+  - <%= i.get_item.title %>
+  <% end %>
+  
+ 
+Conserve bien cet email, il te permettra d'accéder à l'atelier sans crainte ;)
+ 
+À très bientôt !

@@ -13,7 +13,6 @@ require 'faker'
 nb_admin = 1
 nb_users = 5
 nb_items = 20
-nb_carts = 5
 nb_items_per_carts = 5
 nb_items_per_orders = 5
 nb_orders = 5
@@ -28,8 +27,6 @@ nb_admin.times do |x|
     admin: true)
     puts "Seeding of the Admin"
 end
-
-
 
 nb_items.times do |x|
   item = Item.create(
@@ -53,30 +50,25 @@ nb_users.times do |x|
   puts "Seeding of User nb #{x}"
 end
 
-nb_carts.times do |x|
-  Cart.create(
-    user_id: User.all.sample.id,
-  item_id: Item.all.sample.id)
-  puts "Seed of Cart nb #{x}"
-end
 
 nb_items_per_carts.times do |x|
   CartItem.create(
     cart_id: Cart.all.sample.id,
-  item_id: Item.all.sample.id)
+    item_id: Item.all.sample.id,
+  quantity: rand(1..10))
   puts "Seed of items per Cart nb #{x}"
 end
 
 nb_orders.times do |x|
   Order.create(
-    user_id: User.all.sample.id,
-  item_id: Item.all.sample.id)
+  user_id: User.all.sample.id)
   puts "Seed of orders nb #{x}"
 end
 
 nb_items_per_orders.times do |x|
   OrderItem.create(
     order_id: Order.all.sample.id,
-  item_id: Item.all.sample.id)
+    item_id: Item.all.sample.id,
+  quantity: rand(1..10))
   puts "Seed of items per order nb #{x}"
 end
