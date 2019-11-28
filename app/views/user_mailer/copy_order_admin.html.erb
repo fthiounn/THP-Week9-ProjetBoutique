@@ -4,26 +4,24 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-
-  <p> 
-    Vous avez une nouvelle commande sur La Fabrique des Castors !
-  </p>
-  <p> 
-    @user a reçu le mail suivant :
-  </p>
-
-  <p>
-    ==========================================================
-  </p>
-  <%= @user.name %> ta commande a bien été pris en compte !
     <p>
-    Voici le contenu de ta commande:
-    <% @Items.each do |i| %>
-      - <%= i.title %>
+      Vous avez une nouvelle commande sur La Fabrique des Castors !
+    </p>
+    <p>
+      @user a reçu le mail suivant :
+    </p>
+    <p>
+      ==========================================================
+    </p>
+    <%= @user.first_name %> Ta commande à bien été prise en compte !
+    <p>
+      Voici le contenu de ta commande:
+      <% @items.each do |i| %>
+        - <%= Item.find(i.item_id).title %>
       <% end %>
     </p>
     <p>
-    Conserve bien cet email, il te permettra d'accéder à l'atelier sans crainte ;)
+      Conserve bien cet email, il te permettra d'accéder à l'atelier sans crainte ;)
     </p>
     <p> À très bientôt !
     </p>
