@@ -25,7 +25,7 @@
       </li>
      
       <!-- Nav Item - Tables -->
-      <li class="nav-item active">
+      <li class="nav-item">
         <%= link_to(admin_items_path(:id => params[:id]), html_options = {class:"nav-link"}) do %>
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Liste des Ateliers</span>
@@ -33,10 +33,10 @@
       </li>
 
        <!-- Nav Item - Tables -->
-      <li class="nav-item">
+      <li class="nav-item active">
         <%= link_to(admin_orders_path(:id => params[:id]), html_options = {class:"nav-link"}) do %>
         <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Comandes</span>
+        <span>Commandes</span>
         <%end%>
       </li>
 
@@ -214,46 +214,32 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Listes des ateliers</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Historique des commandes</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
+                 <% @orders.reverse_each do |order|  %> 
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Atelier</th>
-                      <th>Lieux</th>
-                      <th>Start date</th>
-                      <th>Prix</th>
-                      <th>Modifier</th>
+                      <th>Commande ID</th>
+                      <th>Client ID</th>
+                      <th>Price</th>
+                      <th>Date</th>
                     </tr>
                   </thead>
-                  <tfoot>
-                    <tr>
-                     <th>Atelier</th>
-                      <th>Lieux</th>
-                      <th>Start date</th>
-                      <th>Prix</th>
-                      <th>Modifier</th>
-                    </tr>
-                  </tfoot>
                   <tbody>
-                  <% @items.reverse_each do |item|  %> 
                     <tr>
-                      <td><%=item.title%></td>
-                      <td><%=City.find(item.city_id).city%></td>
-                      <td><%=item.date%></td>
-                      <td><%=number_to_euro(item.price)%></td>
-                      <td class="text-center">
-                      <%= link_to item_path(id: item.id), :method => :delete, data: { confirm: 'Are you sure?' } do %>
-                        <i class="fas fa-trash-alt text-danger"></i>
-                      <% end %></td>
+                      <td><%=order.id%></td>
+                      <td><%=order.user_id%></td>
+                      <td><%=number_to_euro(order.get_price)%></td>
+                      <td><%=order.created_at.strftime("%h %d, %Y")%></td>
                     </tr>
-                    <%end%>
                   </tbody>
                 </table>
+              <%end%>
               </div>
-            </div>
+              </div>
           </div>
 
         </div>

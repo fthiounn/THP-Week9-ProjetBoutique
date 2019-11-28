@@ -21,4 +21,9 @@ class Order < ApplicationRecord
     end
     price
   end
+
+  def get_items
+    OrderItem.where(order_id: self.id)
+  end
+
 end

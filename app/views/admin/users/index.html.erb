@@ -29,7 +29,15 @@
       <li class="nav-item">
         <%= link_to(admin_items_path(:id => @user.id), html_options = {class:"nav-link"}) do %>
         <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Tables</span>
+        <span>Liste des Ateliers</span>
+        <%end%>
+      </li>
+
+       <!-- Nav Item - Tables -->
+      <li class="nav-item">
+        <%= link_to(admin_orders_path(:id => @user.id), html_options = {class:"nav-link"}) do %>
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Commandes</span>
         <%end%>
       </li>
 
@@ -319,7 +327,7 @@
                 <!-- Card Body -->
                 <div class="card-body">
                   <div class="chart-area">
-                    <canvas id="myAreaChart"></canvas>
+                    <canvas id="myAreaaChart"></canvas>
                   </div>
                 </div>
               </div>
