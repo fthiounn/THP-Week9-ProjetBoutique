@@ -31,13 +31,10 @@
             <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
             4.0 stars
           </div>
-          </form>
-          -->
           <% if user_signed_in? %>
-          <%= link_to "Ajouter au panier", new_item_cart_item_path(@item, quantity: 1),class: "btn btn-luc btn-quantity" %>
+          <%= link_to "Ajouter au panier", new_item_cart_item_path(@item, quantity: 1),class: "btn btn-luc" %>
           <%end%>
         </div>
-      </div>
       <!-- /.card -->
       <div class="card card-outline-secondary my-4">
         <div class="card-header">
