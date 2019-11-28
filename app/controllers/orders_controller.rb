@@ -10,12 +10,7 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
-    @items = OrderItem.where(order_id: @order.id)
-    puts "*****************" *50
-    puts @items
-
-    @items = Item.where(id: OrderItem.select(:item_id).where(order_id: @order.id))
-    @totalprice = totalprice(@items)
+    @orderItems = OrderItem.where(order_id: @order.id)
   end
 
   # GET /orders/new
@@ -41,7 +36,7 @@ class OrdersController < ApplicationController
     end
     # vider le cart
     CartItem.where(cart_id: @cart_id).destroy_all
-   
+
     redirect_to order_path(@order)
   end
 
@@ -56,7 +51,7 @@ class OrdersController < ApplicationController
         format.html { render :edit }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
-    end 
+    end
   end
 
   # DELETE /orders/1
@@ -70,25 +65,13 @@ class OrdersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_order
-      @order = Order.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def order_params
-      params.fetch(:order, {})
-    end
-
-    def totalprice(items)
-    @totalprice = 0
-    items.each do |i|
-      puts "$$$$$$$$$$$$$" * 100
-      puts i.price
-      puts "$$$$$$$$$$$$$" * 100
-      @totalprice += ( i.price )
-    end
-    return @totalprice
+  # Use callbacks to share common setup or constraints between actions.
+  def set_order
+    @order = Order.find(params[:id])
   end
-  
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def order_params
+    params.fetch(:order, {})
+  end
 end

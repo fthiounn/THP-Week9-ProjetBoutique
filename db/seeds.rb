@@ -16,6 +16,8 @@ nb_items_per_carts = 5
 nb_items_per_orders = 5
 nb_orders = 5
 
+User.create(first_name: 'admin',password: 'qwerty', description: 'auyezgsfjesuyzfgduzewsh', last_name:'admin', email:"test@test.fr")
+
 nb_items.times do |x|
   item = Item.create(
     title: "Atelier à " + Faker::Address.city,
@@ -48,14 +50,14 @@ end
 
 nb_orders.times do |x|
   Order.create(
-    user_id: User.all.sample.id)
+  user_id: User.all.sample.id)
   puts "Seed of orders nb #{x}"
 end
 
 nb_items_per_orders.times do |x|
   OrderItem.create(
     order_id: Order.all.sample.id,
-  item_id: Item.all.sample.id,
+    item_id: Item.all.sample.id,
   quantity: rand(1..10))
   puts "Seed of items per order nb #{x}"
 end
