@@ -10,8 +10,12 @@
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Pacifico" />
   </head>
   <body>
+    <% if notice %>
+      <p class="notice"> <%= notice %> </p>
+    <% elsif alert %>
+      <p class="alert"> <%= alert %> </p>
+    <% end %>
     <%= render 'layouts/header' %>
-    <%= render 'layouts/flash' %>
     <%= yield %>
     <%= render 'layouts/footer' %>
   </body>
