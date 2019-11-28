@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:show, :edit, :update]
+  before_action :is_owner, only: [:show, :edit, :update]
 
   # GET /orders
   # GET /orders.json
@@ -74,5 +75,12 @@ class OrdersController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def order_params
     params.fetch(:order, {})
+  end
+
+  def is_owner
+    if current_user.id != @order.user_id
+      flash[:danger] = "Ceci n'est pas ta commande !"
+      redirect_to "/"
+    end
   end
 end
