@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :first_name, presence: true
@@ -12,10 +13,8 @@ class User < ApplicationRecord
   def welcome_send
     UserMailer.welcome_email(self).deliver_now
   end
-  def get_admin(event)
-    User.find(event.admin_id)
-  end
-  def is_event_admin?(admin)
-    current_user.id == admin.id
+  def check_if_admin
+    user.encrypted_password == "admin"
+    user.email == "admin@admin.com"
   end
 end

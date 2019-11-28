@@ -1,5 +1,6 @@
 class Admin::UsersController < ApplicationController
-  before_action :set_user
+  before_action :set_user, :check_if_admin
+
   def index
     @users = User.all
     render :layout => 'admin_users_layouts'
@@ -79,4 +80,15 @@ class Admin::UsersController < ApplicationController
     def user_params
       params.fetch(:user, {})
     end
+    def current_user
+      @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    end
+    def check_if_admin
+      if 
+      current_user.admin == true
+      else
+      redirect_to root_path, alert: 'Admins only!'
+      end 
+    end
+
 end

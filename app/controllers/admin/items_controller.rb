@@ -1,5 +1,5 @@
 class Admin::ItemsController < ApplicationController
-  before_action :set_item
+  before_action :set_item, :check_if_admin
 
   # GET /items
   # GET /items.json
@@ -73,4 +73,13 @@ class Admin::ItemsController < ApplicationController
     def item_params
       params.fetch(:item, {})
     end
+
+    def check_if_admin
+      if 
+      current_user.admin == true
+      else
+      redirect_to root_path, alert: 'Admins only!'
+      end 
+    end
+
 end
