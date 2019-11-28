@@ -5,12 +5,12 @@ Vous avez une nouvelle commande sur La Fabrique des Castors !
 ==========================================================
 
 
-<%= @user.name %> ta commande a bien été pris en compte !
+<%= @user.first_name %> Ta commande à bien été prise en compte !
 ==========================================================
  
 Voici le contenu de ta commande:
-<% @Items.each do |i| %>
-  - <%= i.title %>
+<% @items.each do |i| %>
+  - <%= Item.find(i.item_id).title %>
   <% end %>
   
  

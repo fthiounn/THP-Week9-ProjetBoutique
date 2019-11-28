@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 2019_11_28_152707) do
     t.text "description"
     t.decimal "price"
     t.bigint "city_id"
+    t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["city_id"], name: "index_items_on_city_id"
