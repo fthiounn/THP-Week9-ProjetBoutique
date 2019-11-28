@@ -55,10 +55,12 @@ class CartItemsController < ApplicationController
   # DELETE /cart_items/1
   # DELETE /cart_items/1.json
   def destroy
+    @cart = Cart.where(user_id: current_user.id).first
+    @cart_item_id = @cart_item.id
     @cart_item.destroy
     respond_to do |format|
-      format.html { redirect_to cart_items_url, notice: 'Cart item was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { }
+      format.js { }
     end
   end
 

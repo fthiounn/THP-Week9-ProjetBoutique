@@ -1,6 +1,6 @@
 <div class="card shadow mb-4">
   <div class="card-header py-3">
-    <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+    <h1 class="m-0 font-weight-bold m-5">Le Panier du Castor</h1>
   </div>
   <div class="card-body">
     <div class="table-responsive">
@@ -35,7 +35,7 @@
         </tfoot>
         <tbody>
           <% @cart_item.each do |cart_item|  %>
-            <tr>
+            <tr id="line-<%=cart_item.id%>"=>
               <td><%= cart_item.get_item.title %></td>
               <td><%= cart_item.get_item.price %> €</td>
               <td class="text-center">
@@ -49,7 +49,7 @@
               </td>
               <td class="text-right" id="item-total-<%=cart_item.id%>"><%= cart_item.get_price %> €</td>
               <td class="text-center">
-                <%= link_to @cartitems, remote: true, :method => :delete, data: { confirm: 'Are you sure?' } do %>
+                <%= link_to item_cart_item_path(cart_item,id: cart_item.id), remote: true, :method => :delete, data: { confirm: 'Are you sure?' } do %>
                   <i class="fas fa-trash-alt text-danger"></i>
                 <% end %></td>
             </tr>
