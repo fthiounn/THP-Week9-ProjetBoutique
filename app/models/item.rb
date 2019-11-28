@@ -1,4 +1,5 @@
 class Item < ApplicationRecord
+  belongs_to :city
   has_many :cart_items
   has_many :carts, through: :cart_items
 
