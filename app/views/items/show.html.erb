@@ -25,7 +25,7 @@
           <%= image_tag @item.avatar, class:"card-img-top img-fluid", style:"width:900px;height:400px;", alt:"avatar"%>
           <div class="card-body">
             <h3 class="card-title"><%=@item.title%></h3>
-            <h4><%=@item.price%>€</h4>
+            <h4><%=number_to_euro(@item.price)%></h4>
             <p class="card-text"><%=@item.description%></p>
             <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
             4.0 stars
