@@ -37,7 +37,7 @@
                     <div class="py-2 text-uppercase">Quantity</div>
                   </th>
                   <th scope="col" class="border-0">
-                    <div class="py-2 text-uppercase"><%= link_to 'Enlever', @cartitems, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+                    <div class="py-2 text-uppercase"><%= link_to 'supprimer', @cartitems, method: :delete, data: { confirm: 'Are you sure?' } %> <i class="fas fa-trash-alt"></i> </div>
                   </th>
                 </tr>
               </thead>
@@ -50,7 +50,7 @@
     <thead>
       <tr>
         <th scope="col" class="border-0 bg-light">
-            <div class="p-2 px-3 text-uppercase">TOTAL</div>
+            <div class="p-2 px-3 text-uppercase">                       TOTAL</div>
               </th>
                 <th scope="col" class="border-0 bg-light">
                   <div class="py-2 text-uppercase"><%= @totalprice %> € </div>
@@ -59,10 +59,11 @@
                     <div class="py-2 text-uppercase"> </div>
                   </th>
                   <th scope="col" class="border-0 bg-light">
-                    <div class="py-2 text-uppercase"><%= link_to 'Supprimer le panier', @cartitems, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+                    <div class="py-2 text-uppercase"><%= link_to 'Supprimer panier', @cartitems, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <i class="fas fa-trash-alt"></i></div>
                   </th>
                     <th scope="col" class="border-0 bg-light">
-                    <div class="py-2 text-uppercase"><%= link_to 'Passer la commande', new_charge_path(totalprice: @totalprice) %></div>
+                    <div class="py-2 text-uppercase"><%= link_to 'Passer commande', new_charge_path(totalprice: @totalprice) %> <i class="fas fa-shopping-bag"></i> </div>
                   </th>
                 </tr>
               </thead>

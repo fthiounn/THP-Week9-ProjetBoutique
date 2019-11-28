@@ -48,14 +48,14 @@ end
 
 nb_orders.times do |x|
   Order.create(
-    user_id: User.all.sample.id,
-  item_id: Item.all.sample.id)
+    user_id: User.all.sample.id)
   puts "Seed of orders nb #{x}"
 end
 
 nb_items_per_orders.times do |x|
   OrderItem.create(
     order_id: Order.all.sample.id,
-  item_id: Item.all.sample.id)
+  item_id: Item.all.sample.id,
+  quantity: rand(1..10))
   puts "Seed of items per order nb #{x}"
 end
