@@ -28,7 +28,9 @@
                     </div>
                     <div class="col-md-2">
                           <% if current_user.id == @user.id %>
-                            <%= link_to 'Admin', admin_users_path(:id => @user.id), class: "profile-edit-btn" %><br>
+                            <% if current_user && current_user.admin? %>
+                                <%= link_to 'Admin', admin_users_path(:id => @user.id), class: "profile-edit-btn" %><br>
+                            <%end%>
                             <%= link_to 'Modifier Infos', edit_user_path(@user), class: "profile-edit-btn" %><br>
                             <%= link_to "Modifier mot de passe", edit_user_registration_path(@user), class: "profile-edit-btn" %><br>
                             <%= link_to "Se déconnecter", destroy_user_session_path, class: "profile-edit-btn", method: :delete %><br>

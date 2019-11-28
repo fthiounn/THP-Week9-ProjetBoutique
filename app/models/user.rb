@@ -13,8 +13,4 @@ class User < ApplicationRecord
   def welcome_send
     UserMailer.welcome_email(self).deliver_now
   end
-  def check_if_admin
-    user.encrypted_password == "admin"
-    user.email == "admin@admin.com"
-  end
 end

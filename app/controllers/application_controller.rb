@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_devise_parameters, if: :devise_controller?
-  helper_method :resource_name, :resource, :devise_mapping, :resource_class, :current_user, :is_user_admin?
+  helper_method :resource_name, :resource, :devise_mapping, :resource_class
   protect_from_forgery
 
   def configure_devise_parameters

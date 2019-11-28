@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-  before_action :set_user, :check_if_admin
+  before_action :set_user, :authorized?
 
   def index
     @users = User.all
@@ -80,15 +80,12 @@ class Admin::UsersController < ApplicationController
     def user_params
       params.fetch(:user, {})
     end
-    def current_user
-      @current_user ||= User.find(session[:user_id]) if session[:user_id]
-    end
-    def check_if_admin
-      if 
-      current_user.admin == true
-      else
-      redirect_to root_path, alert: 'Admins only!'
-      end 
+  
+    def authorized?
+      unless current_user.admin
+        flash[:error] = "You are not authorized to view that page."
+        redirect_to root_path
+      end
     end
 
 end

@@ -23,7 +23,7 @@ nb_admin.times do |x|
     first_name: "Admin",
     last_name: "User",
     description: "J'ai accès au Dashboard hihi",
-    password: "admin",
+    password: "admin1",
     email: "admin@admin.com",
     admin: true)
     puts "Seeding of the Admin"

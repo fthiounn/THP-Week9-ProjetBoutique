@@ -75,8 +75,7 @@ class Admin::ItemsController < ApplicationController
     end
 
     def check_if_admin
-      if 
-      current_user.admin == true
+      if current_user && current_user.admin?
       else
       redirect_to root_path, alert: 'Admins only!'
       end 
