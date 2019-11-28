@@ -5,6 +5,15 @@
 	- Luc Puiroux
 	- Maxence Couturier 
 	- Fanny Jestin
+## Notes % Use
+
+> heroku Staging : https://lafabriquedescastors-staging.herokuapp.com/
+> heroku Production : https://lafabriquedescastors.herokuapp.com/
+
+> Admin Login :
+	admin@admin.com
+	pwd: admin1
+
 
 ## Project Logs
 Lundi : 
@@ -22,6 +31,9 @@ Mardi :
 3. Mise en place du Front avec Active Pipeline
 4. Création des views Devise, Homepage
 
+Mercredi:
+1. brunch
+2. cocktails
 	
 ## Description du projet
 
