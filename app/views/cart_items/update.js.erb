@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $("#cart-item-total-price").text("<%= @cart.get_price%>");
+  $("#cart-item-total-price").text("<%= @cart.get_price%> €");
   $("#quantity-<%=@cart_item.id%>").text("<%=@cart_item.quantity%>");
   $("#item-total-<%=@cart_item.id%>").text("<%=@cart_item.get_price%> €");
 });
