@@ -35,12 +35,17 @@ nb_admin.times do |x|
     puts "Seeding of the Admin"
 end
 
+#for the random startdate
+t1 = Time.parse("2020-01-01 14:40:34")
+t2 = Time.parse("2022-01-01 00:00:00")
+
 nb_items.times do |x|
   item = Item.create(
     title: "Atelier à " + Faker::Address.city,
     description: Faker::Lorem.paragraph_by_chars(number: 200, supplemental: false),
     price: rand(1..20),
-    city_id: City.all.sample.id)
+    city_id: City.all.sample.id,
+    date: rand(t1..t2))
     downloaded_image = open("https://www.sortir-en-bretagne.fr/upload/2019/5dbd37d90270eshampoingsolide.jpeg")
     item.avatar.attach(io: downloaded_image  , filename: "faker.jpg")
     puts "seeding item nb #{x}"
