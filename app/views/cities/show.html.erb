@@ -1,21 +1,23 @@
 <% content_for :title, "Accueil" %>
 <!-- Page Content -->
-  <div class="container">
-
-    <div class="row">
-    
-      <div class="col-lg-3">
-        <h1 class="my-4">Les ateliers de</h1>
-        <h1 class="my-4"> la ville </h1>
-        <h1 class="my-4"> <%= @city.city %></h1>
-      </div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+      <h1 class="my-4">Les ateliers de</h1>
+      <h1 class="my-4"> la ville </h1>
+      <h1 class="my-4"> <%= @city.city %></h1>
+    </div>
     <!-- /.col-lg-3 -->
     <div class="col-lg-9">
       <div class="row">
         <% @items.reverse_each do |item|  %>
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-            <%= image_tag item.avatar, class:"card-img-top", style:"width:253px;height:200px;"%>
+              <% if item.avatar.attached? %>
+                <%= image_tag item.avatar, class:"card-img-top", style:"width:253px;height:200px;"%>
+              <% else %>
+                <%= image_tag "https://sortir-prod.s3.amazonaws.com/uploads/events/covers/medium/06ca5db894449287b5a6b44ec62eae56e2011ba0.jpg?1527686886", style:"width:253px;height:200px;"%>
+              <%end%>
               <%= button_to item, class:"card-body",method: :get do %>
                 <h4 class="card-title">
                   <h3><%= item.title %></h3>
@@ -26,7 +28,7 @@
                   <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                 </div>
                 <% if user_signed_in? %>
-                <%= link_to "Ajouter au panier", new_item_cart_item_path(item, quantity: 1),class: "btn btn-luc btn-quantity" %>
+                  <%= link_to "Ajouter au panier", new_item_cart_item_path(item, quantity: 1),class: "btn btn-luc btn-quantity" %>
                 <% end %>
               <%end%>
             </div>
