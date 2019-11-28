@@ -64,9 +64,10 @@
                 </h4>
                 <h4><%=number_to_euro(item.price)%></h4>
                 <p class="card-text"><%=item.description%></p>
+                <p class="card-text"> <i class="fas fa-map-marker-alt"></i> 
+                <%= link_to City.find(item.city_id).city , city_path(City.find(item.city_id).id),class:"btn btn-quantity text-info" %>
+                 </p>
                 <div>
-                  <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                </div>
                 <% if user_signed_in? %>
                 <%= link_to "Ajouter au panier", new_item_cart_item_path(item, quantity: 1),class: "btn btn-luc btn-quantity" %>
                 <% end %>

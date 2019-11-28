@@ -21,7 +21,7 @@
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Infos</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Ateliers</a>
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Historique de commandes</a>
                                 </li>
                             </ul>
                         </div>
@@ -96,7 +96,38 @@
                                             </div>
                                         </div>
                             </div>
+
+
+
+                            <!-- PARTIE HISTORIQUE DE COMMANDES -->
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="card-body">
+                                    <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                        <tr>
+                                            <th>ID commande</th>
+                                            <th>Date</th>
+                                            <th class="text-center">Voir ma commande</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <% @orders.each do |order|  %>
+                                            <tr>
+                                            <td> <%= order.id %></td>
+                                            <td> <%= order.created_at.strftime('%D') %></td>
+                                            <td class="text-center"><%= link_to(order_path(order)) do %>
+                                                 <i class="fa fa-eye" aria-hidden="true"></i>
+                                            <% end %>
+                                            </td>   
+                                            </th>
+
+                                        <% end %>
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
