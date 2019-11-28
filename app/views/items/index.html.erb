@@ -15,6 +15,12 @@
           Ils ont pour but de remplacer les plastiques présents dans les salles de bains tout en faisant un beau geste pour notre planète mais aussi pour votre porte-monnaie :) 
           Laissez-vous tenter et (re)découvrez tous nos ateliers ici ! </p>
         </div>
+        <h4>Les villes présentes </h4>
+        <div class="list-group">
+        <% @cities.reverse_each do |city| %>
+        <%= link_to city.city, city_path(city),class: "list-group-item" %>
+        <% end %>
+      </div>
       </div>
     <!-- /.col-lg-3 -->
     <div class="col-lg-9">
