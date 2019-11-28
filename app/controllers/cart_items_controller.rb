@@ -40,14 +40,14 @@ class CartItemsController < ApplicationController
   # PATCH/PUT /cart_items/1
   # PATCH/PUT /cart_items/1.json
   def update
+    if(params[:intent] == "quantity") then
+      @qte = @cart_item.quantity + params[:value].to_i
+      @cart_item.update(quantity: @qte)
+    end
+    @cart = Cart.find(@cart_item.cart_id)
     respond_to do |format|
-      if @cart_item.update(cart_item_params)
-        format.html { redirect_to @cart_item, notice: 'Cart item was successfully updated.' }
-        format.json { render :show, status: :ok, location: @cart_item }
-      else
-        format.html { render :edit }
-        format.json { render json: @cart_item.errors, status: :unprocessable_entity }
-      end
+      format.html { }
+      format.js { }
     end
   end
 
