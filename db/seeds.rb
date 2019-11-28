@@ -16,6 +16,13 @@ nb_items = 20
 nb_items_per_carts = 5
 nb_items_per_orders = 5
 nb_orders = 5
+nb_cities = 5
+
+nb_cities.times do |x|
+  City.create(
+    city: Faker::Address.city)
+    puts "Seeding of city nb #{x}"
+  end 
 
 nb_admin.times do |x|
   User.create(
@@ -32,7 +39,8 @@ nb_items.times do |x|
   item = Item.create(
     title: "Atelier à " + Faker::Address.city,
     description: Faker::Lorem.paragraph_by_chars(number: 200, supplemental: false),
-    price: rand(1..20))
+    price: rand(1..20),
+    city_id: City.all.sample.id)
     downloaded_image = open("https://www.sortir-en-bretagne.fr/upload/2019/5dbd37d90270eshampoingsolide.jpeg")
     item.avatar.attach(io: downloaded_image  , filename: "faker.jpg")
     puts "seeding item nb #{x}"
