@@ -5,7 +5,7 @@ class Order < ApplicationRecord
   after_create :order_confirmation_email
 
   def order_confirmation_email
-    UserMailer.order_confirmation_email(self.user, self).now
+    UserMailer.order_confirmation_email(self.user, self)
   end
 
   def get_price
