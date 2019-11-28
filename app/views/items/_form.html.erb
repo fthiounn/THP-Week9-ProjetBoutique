@@ -1,57 +1,26 @@
 <% content_for :title, "Création atelier" %>
-
-
-  <div class="contact1">
-		<div class="container-contact1">
-			<div class="contact1-pic js-tilt" data-tilt>
-          <%= image_tag "img-02.png", alt: "IMG"%>
-			</div>
-        <%= form_with(model: item, local: true) do |f| %>
-				<span class="contact1-form-title">
-					Crée ton atelier
-				</span>
-
-				<div class="wrap-input1 validate-input" data-validate = "Name is required">
-					<%= f.text_field :title, placeholder:"Titre", class: "input1" %>
-					<span class="shadow-input1"></span>
-				</div>
-
-				<div class="wrap-input1 validate-input" data-validate = "Name is required">
-					<%= f.text_field :description, placeholder:"Description", class: "input1" %>
-					<span class="shadow-input1"></span>
-				</div>
-
-				<div class="wrap-input1 validate-input" data-validate = "Name is required">
-					<%= f.text_field :city, placeholder:"Lieu", class: "input1" %>
-					<span class="shadow-input1"></span>
-				</div>
-
-				<div class="wrap-input1 validate-input" data-validate = "Name is required">
-					<%= f.text_field :price, placeholder:"Prix", class: "input1" %>
-					<span class="shadow-input1"></span>
-				</div>
-
-				<div class="wrap-input1 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-					<%= f.text_field :date, placeholder:"", class: "input1", type:"datetime-local" %>
-					<span class="shadow-input1"></span>
-				</div>
-
-        <p>Photo de l'atelier :</p>
-        <div class="wrap-input1 validate-input" data-validate = "Name is required">
-              <%= f.file_field :avatar %>
-					    <span class="shadow-input1"></span>
-        </div> 
-
-				<div class="container-contact1-form-btn">
-          <%= f.submit  "Créer", class: "contact1-form-btn" %>
-				</div>
-			<%end%>
-		</div>
-	</div>
-	<script >
-		$('.js-tilt').tilt({
-			scale: 1.1
-		})
-	</script>
-
-	              
+<div class="contact1">
+  <div class="container-contact1">
+    <div class="contact1-pic js-tilt" data-tilt>
+      <%= image_tag "img-02.png", alt: "IMG"%>
+    </div>
+    <%= form_with(url: items_path, method: :post) do %>
+      <%= label_tag :title, "Title:" %>
+      <%= text_field_tag :title,"",class: "input1" %>
+      <%= label_tag :description, "Description:" %>
+      <%= text_field_tag :description,"",class: "input1" %>
+      <%= label_tag :city, "City:" %>
+      <%= text_field_tag :city,"",class: "input1" %>
+      <%= label_tag :item, "Price:" %>
+      <%= number_field :item, :price,class: "input1" %>
+      <%= label_tag :date, "Title:" %>
+      <%= datetime_local_field :date,"",class: "input1" %>
+      <%= submit_tag "Créer",class: "btn btn-luc m-5 container-contact1-form-btn" %>
+    <% end %>
+  </div>
+</div>
+<script >
+  $('.js-tilt').tilt({
+    scale: 1.1
+  })
+</script>

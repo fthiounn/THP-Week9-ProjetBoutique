@@ -15,7 +15,7 @@ class ItemsController < ApplicationController
 
   # GET /items/new
   def new
-    @item = Item.new
+
   end
 
   # GET /items/1/edit
@@ -24,18 +24,21 @@ class ItemsController < ApplicationController
 
   # POST /items
   # POST /items.json
- def create
-  puts "*"*80
-  puts params[:title]
-    @item = Item.new(title: params[:title], 
-      description: params[:description],
-      city_id: params[:city],
-      price: params[:price],
-      date: params[:date],
-      admin_id: current_user.id)
+  def create
+    #get city
+    if !City.where(city: params[:city]).blank?
+      @city = City.where(city: params[:city]).first
+    else
+      @city = City.create(city: params[:city])
+    end
+
+    @item = Item.new(title: params[:title],
+                     description: params[:description],
+                     city_id: @city.id,
+                     price: params[:price],
+                     date: params[:date])
     if @item.save # essaie de sauvegarder en base @gossip
-        flash[:success] = "You successfuly created a workshop"
-        redirect_to :controller => 'items', :action => 'show', id: @item.id
+      redirect_to :controller => 'items', :action => 'show', id: @item.id, notice: 'Item was successfully added.'
     else
       # This line overrides the default rendering behavior, which
       # would have been to render the "create" view.
@@ -68,7 +71,7 @@ class ItemsController < ApplicationController
   def search
     @items = Item.all
     if Item.exists?(title: params[:search])
-     @item = Item.find_by(title: params[:search])
+      @item = Item.find_by(title: params[:search])
       flash[:success] = "Atelier found !"
       redirect_to @item
     else
@@ -79,13 +82,13 @@ class ItemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_item
-      @item = Item.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_item
+    @item = Item.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def item_params
-      params.fetch(:item, {})
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def item_params
+    params.fetch(:item, {})
+  end
 end
