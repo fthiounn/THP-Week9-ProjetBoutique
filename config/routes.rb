@@ -12,4 +12,9 @@ Rails.application.routes.draw do
   resources :contacts, only: [:new, :create]
   resources :teams, only: [:new]
   root to: "items#index"
+
+  namespace :admin do
+    resources :users
+    resources :items
+  end
 end

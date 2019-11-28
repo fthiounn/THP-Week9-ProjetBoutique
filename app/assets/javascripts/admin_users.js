@@ -13,9 +13,12 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require assets/javascripts/jquery-3.2.1.min
-//= require assets/javascripts/popper
-//= require assets/javascripts/select2.min
-//= require assets/javascripts/tilt.jquery.min
-//= require assets/javascripts/bootstrap.min
-//= require modales
+//= require assets_users_admin/javascripts/jquery.min
+//= require assets_users_admin/javascripts/bootstrap.bundle.min
+//= require assets_users_admin/javascripts/jquery.easing.min
+//= require assets_users_admin/javascripts/sb-admin-2.min
+//= require assets_users_admin/javascripts/Chart.min
+//= require assets_users_admin/javascripts/chart-area-demo
+//= require assets_users_admin/javascripts/chart-pie-demo
+
+

@@ -1,15 +1,21 @@
 <% content_for :title, "Accueil" %>
 <!-- Page Content -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-3">
-      <h1 class="my-4">La Fabrique des Castors</h1>
-      <div class="list-group">
-        <a href="#" class="list-group-item">Category 1</a>
-        <a href="#" class="list-group-item">Category 2</a>
-        <a href="#" class="list-group-item">Category 3</a>
+  <div class="container">
+
+    <div class="row">
+    
+      <div class="col-lg-3">
+        <h1 class="my-4">Cosmétique zéro déchet</h1>
+        <div class="list-group">
+          <p><br>Bienvenue ! 
+          Ici vous trouverez tous nos ateliers cosmétiques solides véganes et respectueux de l'environnement.
+          Des shampoings solides, du dentifrice, des lingettes démaquillantes et plein d'autres accessoires Zéro déchet vous attendent ! 
+          Nos ateliers sont à destination des hommes,
+          des femmes et de toute la famille !
+          Ils ont pour but de remplacer les plastiques présents dans les salles de bains tout en faisant un beau geste pour notre planète mais aussi pour votre porte-monnaie :) 
+          Laissez-vous tenter et (re)découvrez tous nos ateliers ici ! </p>
+        </div>
       </div>
-    </div>
     <!-- /.col-lg-3 -->
     <div class="col-lg-9">
       <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
@@ -46,31 +52,11 @@
                 <h4 class="card-title">
                   <h3><%= item.title %></h3>
                 </h4>
-                <h4><%=item.price%> €</h4>
+                <h4><%=number_to_euro(item.price)%></h4>
                 <p class="card-text"><%=item.description%></p>
                 <div>
                   <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                 </div>
-                <!-- IMPLEMENTER LES QUANTITES 
-                <form>
-                  <label for="q">Quantité: </label>
-                  <select class="qt" name="quantity">
-                    <option selected="">1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                  </select>
-                  
-
-                </form>
-                -->
-
                 <% if user_signed_in? %>
                 <%= link_to "Ajouter au panier", new_item_cart_item_path(item, quantity: 1),class: "btn btn-luc btn-quantity" %>
                 <% end %>

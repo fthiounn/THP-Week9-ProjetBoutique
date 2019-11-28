@@ -10,14 +10,9 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require main
- *= require show_user
- *= require assets/stylesheets/shop-homepage
- *= require assets/stylesheets/shop-item
- *= require assets/stylesheets/animate
- *= require assets/stylesheets/hamburgers.min
- *= require assets/stylesheets/main2
- *= require assets/stylesheets/select2.min
- *= require assets/stylesheets/util
- *= require modales
+ *= require assets_items_admin/stylesheets/sb-admin-2.min
+ *= require assets_items_admin/stylesheets/all.min
+ *= require assets_items_admin/stylesheets/dataTables.bootstrap4.min
  */
+ @import "font-awesome-sprockets.scss";
+ @import "font-awesome.scss";
