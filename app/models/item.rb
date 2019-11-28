@@ -20,7 +20,7 @@ class Item < ApplicationRecord
     presence: true,
     numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 1000}
   validates :date, presence: true,
-    validate :is_started
+    validates :is_started
   def is_started
     self.date < Time.now
   end
