@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
+  before_action :is_owner?, only: [:show, :edit, :update, :destroy]
 
   # GET /carts
   # GET /carts.json
@@ -87,4 +88,11 @@ class CartsController < ApplicationController
     end
     return @totalprice
   end
+
+   def is_owner?
+    if current_user.id.to_i != params[:id].to_i
+      flash[:danger] = "Pas de compte ? Pas d'panier"
+      redirect_to "/"
+    end
+   end
 end
