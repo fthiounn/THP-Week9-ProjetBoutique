@@ -1,11 +1,10 @@
 class Admin::ItemsController < ApplicationController
-  before_action :set_item, :check_if_admin
+  before_action :set_item, :set_user, :check_if_admin
 
   # GET /items
   # GET /items.json
   def index
     @items = Item.all
-    @users = User.all
     render :layout => 'admin_items_layouts'
   end
 
@@ -68,7 +67,9 @@ class Admin::ItemsController < ApplicationController
     def set_item
       @item = Item.find(params[:id])
     end
-
+    def set_user
+      @user = User.find(params[:id])
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
       params.fetch(:item, {})

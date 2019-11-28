@@ -1,3 +1,4 @@
+  <% content_for :title, "Admin" %>
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -159,9 +160,19 @@
             <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
+            <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <%if @user.avatar.attached?%>
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%=@user.first_name%> <%=@user.last_name%></span>
+                <%= image_tag @user.avatar, class:"img-profile rounded-circle", alt: 'avatar' %> 
               </a>
+            <%else%>
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%=@user.first_name%> <%=@user.last_name%></span>
+                <%= image_tag "profile_picture.jpg", class:"img-profile rounded-circle" %> 
+              </a>
+            <%end%> 
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
@@ -226,10 +237,13 @@
                   <% @items.reverse_each do |item|  %> 
                     <tr>
                       <td><%=item.title%></td>
-                      <td>Paris</td>
-                      <td>31/12/2019</td>
-                      <td><%=item.price%></td>
-                      <td></td>
+                      <td><%=item.city.city%></td>
+                      <td><%=item.date%></td>
+                      <td><%=number_to_euro(item.price)%></td>
+                      <td class="text-center">
+                      <%= link_to item_path(id: item.id), :method => :delete, data: { confirm: 'Are you sure?' } do %>
+                        <i class="fas fa-trash-alt text-danger"></i>
+                      <% end %></td>
                     </tr>
                     <%end%>
                   </tbody>

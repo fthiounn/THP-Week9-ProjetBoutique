@@ -21,6 +21,9 @@
             <h1><%= link_to "MON COMPTE" , user_path(current_user.id), :class => "nav-link" %></h1>
           </li>
           <li class="nav-item">
+            <h1><%= link_to "CREER UN ATELIER" , new_item_path, :class => "nav-link" %></h1>
+          </li>
+          <li class="nav-item">
           <%= link_to(cart_path(current_cart_id), html_options = {class:"nav-link"}) do%>
           <i class="fas fa-shopping-cart"></i>
           <% end %>

@@ -1,17 +1,57 @@
-<%= form_with(model: item, local: true) do |form| %>
-  <% if item.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
+<% content_for :title, "Création atelier" %>
 
-      <ul>
-      <% item.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+  <div class="contact1">
+		<div class="container-contact1">
+			<div class="contact1-pic js-tilt" data-tilt>
+          <%= image_tag "img-02.png", alt: "IMG"%>
+			</div>
+        <%= form_with(model: item, local: true) do |f| %>
+				<span class="contact1-form-title">
+					Crée ton atelier
+				</span>
+
+				<div class="wrap-input1 validate-input" data-validate = "Name is required">
+					<%= f.text_field :title, placeholder:"Titre", class: "input1" %>
+					<span class="shadow-input1"></span>
+				</div>
+
+				<div class="wrap-input1 validate-input" data-validate = "Name is required">
+					<%= f.text_field :description, placeholder:"Description", class: "input1" %>
+					<span class="shadow-input1"></span>
+				</div>
+
+				<div class="wrap-input1 validate-input" data-validate = "Name is required">
+					<%= f.text_field :city, placeholder:"Lieu", class: "input1" %>
+					<span class="shadow-input1"></span>
+				</div>
+
+				<div class="wrap-input1 validate-input" data-validate = "Name is required">
+					<%= f.text_field :price, placeholder:"Prix", class: "input1" %>
+					<span class="shadow-input1"></span>
+				</div>
+
+				<div class="wrap-input1 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<%= f.text_field :date, placeholder:"", class: "input1", type:"datetime-local" %>
+					<span class="shadow-input1"></span>
+				</div>
+
+        <p>Photo de l'atelier :</p>
+        <div class="wrap-input1 validate-input" data-validate = "Name is required">
+              <%= f.file_field :avatar %>
+					    <span class="shadow-input1"></span>
+        </div> 
+
+				<div class="container-contact1-form-btn">
+          <%= f.submit  "Créer", class: "contact1-form-btn" %>
+				</div>
+			<%end%>
+		</div>
+	</div>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+
+	              

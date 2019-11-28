@@ -5,7 +5,9 @@
     <div class="row">
     
       <div class="col-lg-3">
-        <h1 class="my-4">Cosmétique zéro déchet</h1>
+        <h1 class="my-4">Cosmétique zéro</h1>
+        <h1 class="my-4"> déchet</h1>
+
         <div class="list-group">
           <p><br>Bienvenue ! 
           Ici vous trouverez tous nos ateliers cosmétiques solides véganes et respectueux de l'environnement.
@@ -15,12 +17,13 @@
           Ils ont pour but de remplacer les plastiques présents dans les salles de bains tout en faisant un beau geste pour notre planète mais aussi pour votre porte-monnaie :) 
           Laissez-vous tenter et (re)découvrez tous nos ateliers ici ! </p>
         </div>
-        <h4>Les villes présentes </h4>
+        <br>
         <div class="list-group">
-        <% @cities.reverse_each do |city| %>
-        <%= link_to city.city, city_path(city),class: "list-group-item" %>
-        <% end %>
-      </div>
+          <h4 class="list-group-item">Les villes présentes </h4>
+          <% @cities.reverse_each do |city| %>
+          <%= link_to city.city, city_path(city),class: "list-group-item" %>
+          <% end %>
+       </div>
       </div>
     <!-- /.col-lg-3 -->
     <div class="col-lg-9">

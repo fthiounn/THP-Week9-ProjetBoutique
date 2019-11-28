@@ -24,17 +24,23 @@ class ItemsController < ApplicationController
 
   # POST /items
   # POST /items.json
-  def create
-    @item = Item.new(item_params)
-
-    respond_to do |format|
-      if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
-        format.json { render :show, status: :created, location: @item }
-      else
-        format.html { render :new }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
-      end
+ def create
+  puts "*"*80
+  puts params[:title]
+    @item = Item.new(title: params[:title], 
+      description: params[:description],
+      city_id: params[:city],
+      price: params[:price],
+      date: params[:date],
+      admin_id: current_user.id)
+    if @item.save # essaie de sauvegarder en base @gossip
+        flash[:success] = "You successfuly created a workshop"
+        redirect_to :controller => 'items', :action => 'show', id: @item.id
+    else
+      # This line overrides the default rendering behavior, which
+      # would have been to render the "create" view.
+      flash.now[:danger] = "Error with the workshop creation"
+      render :action => 'new'
     end
   end
 
@@ -56,10 +62,7 @@ class ItemsController < ApplicationController
   # DELETE /items/1.json
   def destroy
     @item.destroy
-    respond_to do |format|
-      format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to request.referrer, notice: 'Item was successfully destroyed.'
   end
 
   def search

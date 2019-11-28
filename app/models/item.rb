@@ -1,12 +1,12 @@
 class Item < ApplicationRecord
-  belongs_to :city
   has_many :cart_items
   has_many :carts, through: :cart_items
-
   has_many :order_items
   has_many :orders, through: :order_items
-
   has_one_attached :avatar
+
+  validates :date, presence: true
+  validates :city_id, presence: true
 
   validates :title,
     presence: true,
