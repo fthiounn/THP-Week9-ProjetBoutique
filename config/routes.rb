@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :cities
   devise_for :users
   resources :order_items
   resources :orders
@@ -16,5 +17,6 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
     resources :items
+    resources :orders
   end
 end

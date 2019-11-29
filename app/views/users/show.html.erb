@@ -5,9 +5,9 @@
                     <div class="col-md-4">
                         <div class="profile-img">
                           <%if @user.avatar.attached?%>
-                          <%= image_tag @user.avatar, style: "width:200px;height:200px", alt: 'avatar' %>
+                          <%= image_tag @user.avatar, style: "width:150px;height:150px", alt: 'avatar' %>
                           <%else%>
-                          <%= image_tag "profile_picture.jpg", style: "width:300px;height:300px" %>
+                          <%= image_tag "profile_picture.jpg", style: "width:150px;height:150px" %>
                           <%end%> 
                         </div>
                     </div>
@@ -21,17 +21,17 @@
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Infos</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Ateliers</a>
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Historique de commandes</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-2">
                           <% if current_user.id == @user.id %>
+                            <%= link_to "Mon panier", cart_path(current_cart_id),class: "btn btn-luc btn-quantity" %>
                             <% if current_user && current_user.admin? %>
                                 <%= link_to 'Admin', admin_users_path(:id => @user.id), class: "profile-edit-btn" %><br>
                             <%end%>
-                            <%= link_to "Mon panier", cart_path(current_cart_id),class: "btn btn-luc btn-quantity" %>
                             <%= link_to 'Modifier Infos', edit_user_path(@user), class: "profile-edit-btn" %><br>
                             <%= link_to "Modifier mot de passe", edit_user_registration_path(@user), class: "profile-edit-btn" %><br>
                             <%= link_to "Se déconnecter", destroy_user_session_path, class: "profile-edit-btn", method: :delete %><br>
@@ -96,7 +96,38 @@
                                             </div>
                                         </div>
                             </div>
+
+
+
+                            <!-- PARTIE HISTORIQUE DE COMMANDES -->
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="card-body">
+                                    <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                        <tr>
+                                            <th>ID commande</th>
+                                            <th>Date</th>
+                                            <th class="text-center">Voir ma commande</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <% @orders.each do |order|  %>
+                                            <tr>
+                                            <td> <%= order.id %></td>
+                                            <td> <%= order.created_at.strftime('%D') %></td>
+                                            <td class="text-center"><%= link_to(order_path(order)) do %>
+                                                 <i class="fa fa-eye" aria-hidden="true"></i>
+                                            <% end %>
+                                            </td>   
+                                            </th>
+
+                                        <% end %>
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>

@@ -1,3 +1,4 @@
+  
 <div class="card shadow mb-4">
   <div class="card-header py-3">
     <h1 class="m-0 font-weight-bold m-5">Le Panier du Castor</h1>
@@ -51,7 +52,8 @@
               <td class="text-center">
                 <%= link_to item_cart_item_path(cart_item,id: cart_item.id), remote: true, :method => :delete, data: { confirm: 'Are you sure?' } do %>
                   <i class="fas fa-trash-alt text-danger"></i>
-                <% end %></td>
+                </td>
+              <% end %>
             </tr>
           <%end%>
         </tbody>

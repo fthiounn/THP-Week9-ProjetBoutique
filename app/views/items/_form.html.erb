@@ -1,17 +1,26 @@
-<%= form_with(model: item, local: true) do |form| %>
-  <% if item.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
-
-      <ul>
-      <% item.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<% content_for :title, "Création atelier" %>
+<div class="contact1">
+  <div class="container-contact1">
+    <div class="contact1-pic js-tilt" data-tilt>
+      <%= image_tag "img-02.png", alt: "IMG"%>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
+    <%= form_with(url: items_path, method: :post) do %>
+      <%= label_tag :title, "Title:" %>
+      <%= text_field_tag :title,"",class: "input1" %>
+      <%= label_tag :description, "Description:" %>
+      <%= text_field_tag :description,"",class: "input1" %>
+      <%= label_tag :city, "City:" %>
+      <%= text_field_tag :city,"",class: "input1" %>
+      <%= label_tag :item, "Price:" %>
+      <%= number_field :item, :price,class: "input1" %>
+      <%= label_tag :item, "Date:" %>
+      <%= datetime_local_field :date,"",class: "input1" %>
+      <%= submit_tag "Créer",class: "btn btn-luc m-5 container-contact1-form-btn" %>
+    <% end %>
   </div>
-<% end %>
+</div>
+<script >
+  $('.js-tilt').tilt({
+    scale: 1.1
+  })
+</script>

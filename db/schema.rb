@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_26_155224) do
+ActiveRecord::Schema.define(version: 2019_11_28_152707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,12 @@ ActiveRecord::Schema.define(version: 2019_11_26_155224) do
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
+  create_table "cities", force: :cascade do |t|
+    t.string "city"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "contacts", force: :cascade do |t|
     t.text "message"
     t.string "email"
@@ -66,8 +72,11 @@ ActiveRecord::Schema.define(version: 2019_11_26_155224) do
     t.string "title"
     t.text "description"
     t.decimal "price"
+    t.bigint "city_id"
+    t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_items_on_city_id"
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -91,7 +100,7 @@ ActiveRecord::Schema.define(version: 2019_11_26_155224) do
     t.string "first_name"
     t.string "last_name"
     t.text "description"
-    t.boolean  "admin"
+    t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false

@@ -21,3 +21,46 @@
  *= require assets/stylesheets/util
  *= require modales
  */
+
+/* FLASH-NOTICE ALERTS*/
+
+
+.notice{
+    z-index: 999;
+    position: absolute;
+    top: inherit;
+    width: 100%;
+    background: rgba(36, 147, 140, 0);
+    padding: 1.90rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0);
+    text-align: center;
+}
+.alert{
+    z-index: 999;
+    position: absolute;
+    top: inherit;
+    width: 100%;
+    background: rgba(36, 147, 140, 0);
+    padding: 1.90rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0);
+    text-align: center;
+}
+@-webkit-keyframes salut {  
+  0% { background-color: rgba(36, 147, 140, 0.85); }
+  0% {color: rgba(255, 255, 255, 1);}
+  100% { background-color: rgba(36, 147, 140, 0); }
+  100% {color: rgba(255, 255, 255, 0);}
+}
+
+.notice {
+    -webkit-animation-name: salut;  
+    -webkit-animation-iteration-count: 1;  
+    -webkit-animation-duration: 20s; 
+}  
+.alert {
+    -webkit-animation-name: salut;  
+    -webkit-animation-iteration-count: 1;  
+    -webkit-animation-duration: 20s; 
+}   

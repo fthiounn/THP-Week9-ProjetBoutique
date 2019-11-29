@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
   # GET /items.json
   def index
     @items = Item.all
+    @cities = City.all
   end
 
   # GET /items/1
@@ -14,7 +15,7 @@ class ItemsController < ApplicationController
 
   # GET /items/new
   def new
-    @item = Item.new
+
   end
 
   # GET /items/1/edit
@@ -24,16 +25,27 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
-    @item = Item.new(item_params)
-
-    respond_to do |format|
-      if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
-        format.json { render :show, status: :created, location: @item }
-      else
-        format.html { render :new }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
-      end
+    #get city
+    if !City.where(city: params[:city]).blank?
+      @city = City.where(city: params[:city]).first
+    else
+      @city = City.create(city: params[:city])
+    end
+    puts "hello"
+    puts params[:item][:price].first
+    puts params[:date]
+    @item = Item.new(title: params[:title],
+                     description: params[:description],
+                     city_id: @city.id,
+                     price: params[:item][:price],
+                     date: DateTime.parse(params[:date].first))
+    if @item.save # essaie de sauvegarder en base @gossip
+      redirect_to :controller => 'items', :action => 'show', id: @item.id, notice: 'Item was successfully added.'
+    else
+      # This line overrides the default rendering behavior, which
+      # would have been to render the "create" view.
+      flash.now[:danger] = "Error with the workshop creation"
+      render :action => 'new'
     end
   end
 
@@ -55,16 +67,13 @@ class ItemsController < ApplicationController
   # DELETE /items/1.json
   def destroy
     @item.destroy
-    respond_to do |format|
-      format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to request.referrer, notice: 'Item was successfully destroyed.'
   end
 
   def search
     @items = Item.all
     if Item.exists?(title: params[:search])
-     @item = Item.find_by(title: params[:search])
+      @item = Item.find_by(title: params[:search])
       flash[:success] = "Atelier found !"
       redirect_to @item
     else
@@ -75,13 +84,13 @@ class ItemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_item
-      @item = Item.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_item
+    @item = Item.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def item_params
-      params.fetch(:item, {})
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def item_params
+    params.fetch(:item, {})
+  end
 end

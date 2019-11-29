@@ -1,40 +1,40 @@
 <% content_for :title, "Atelier" %>
-            
-
-  <!-- Page Content -->
-  <div class="container">
-
-    <div class="row">
-
-      <div class="col-lg-3">
-        <h1 class="my-4">Cosmétique zéro déchet</h1>
-        <div class="list-group">
-          <p><br>Bienvenue ! 
+<!-- Page Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+      <h1 class="my-4">Cosmétique zéro</h1>
+      <h1 class="my-4"> déchet</h1>
+      <div class="list-group">
+        <p><br>
+          Bienvenue ! 
           Ici vous trouverez tous nos ateliers cosmétiques solides véganes et respectueux de l'environnement.
           Des shampoings solides, du dentifrice, des lingettes démaquillantes et plein d'autres accessoires Zéro déchet vous attendent ! 
           Nos ateliers sont à destination des hommes,
           des femmes et de toute la famille !
           Ils ont pour but de remplacer les plastiques présents dans les salles de bains tout en faisant un beau geste pour notre planète mais aussi pour votre porte-monnaie :) 
           Laissez-vous tenter et (re)découvrez tous nos ateliers ici ! </p>
-        </div>
       </div>
-      <!-- /.col-lg-3 -->
-
-      <div class="col-lg-9">
-
-        <div class="card mt-4">
-          <%= image_tag @item.avatar, class:"card-img-top img-fluid", style:"width:900px;height:400px;", alt:"avatar"%>
-          <div class="card-body">
-            <h3 class="card-title"><%=@item.title%></h3>
-            <h4><%=number_to_euro(@item.price)%></h4>
-            <p class="card-text"><%=@item.description%></p>
-            <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-            4.0 stars
-          </div>
-          <% if user_signed_in? %>
-          <%= link_to "Ajouter au panier", new_item_cart_item_path(@item, quantity: 1),class: "btn btn-luc" %>
-          <%end%>
+    </div>
+    <!-- /.col-lg-3 -->
+    <div class="col-lg-9">
+      <div class="card mt-4">
+        <% if @item.avatar.attached? %>
+          <%= image_tag @item.avatar, class:"card-img-top"%>
+        <% else %>
+          <%= image_tag "http://africa24.info/wp-content/uploads/2018/12/kim-900x400.jpg"%>
+        <%end%>
+        <div class="card-body">
+          <h3 class="card-title"><%=@item.title%></h3>
+          <h4><%=number_to_euro(@item.price)%></h4>
+          <p class="card-text"><%=@item.description%></p>
+          <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+          4.0 stars
         </div>
+        <% if user_signed_in? %>
+          <%= link_to "Ajouter au panier", new_item_cart_item_path(@item, quantity: 1),class: "btn btn-luc btn-quantity" %>
+        <%end%>
+      </div>
       <!-- /.card -->
       <div class="card card-outline-secondary my-4">
         <div class="card-header">

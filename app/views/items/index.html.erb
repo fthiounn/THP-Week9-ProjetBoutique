@@ -1,21 +1,28 @@
 <% content_for :title, "Accueil" %>
 <!-- Page Content -->
-  <div class="container">
-
-    <div class="row">
-    
-      <div class="col-lg-3">
-        <h1 class="my-4">Cosmétique zéro déchet</h1>
-        <div class="list-group">
-          <p><br>Bienvenue ! 
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-lg-3">
+      <h1 class="my-4">Cosmétique zéro</h1>
+      <h1 class="my-4"> déchet</h1>
+      <div class="list-group">
+        <p><br>
+          Bienvenue ! 
           Ici vous trouverez tous nos ateliers cosmétiques solides véganes et respectueux de l'environnement.
           Des shampoings solides, du dentifrice, des lingettes démaquillantes et plein d'autres accessoires Zéro déchet vous attendent ! 
           Nos ateliers sont à destination des hommes,
           des femmes et de toute la famille !
           Ils ont pour but de remplacer les plastiques présents dans les salles de bains tout en faisant un beau geste pour notre planète mais aussi pour votre porte-monnaie :) 
           Laissez-vous tenter et (re)découvrez tous nos ateliers ici ! </p>
-        </div>
       </div>
+      <br>
+      <div class="list-group">
+        <h4 class="list-group-item">Les villes présentes </h4>
+        <% @cities.reverse_each do |city| %>
+          <%= link_to city.city, city_path(city),class: "list-group-item" %>
+        <% end %>
+      </div>
+    </div>
     <!-- /.col-lg-3 -->
     <div class="col-lg-9">
       <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
@@ -48,28 +55,33 @@
         <% @items.reverse_each do |item|  %>
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-            <%= image_tag item.avatar, class:"card-img-top", style:"width:253px;height:200px;"%>
+              <% if item.avatar.attached? %>
+                <%= image_tag item.avatar, class:"card-img-top", style:"width:253px;height:200px;"%>
+              <% else %>
+                <%= image_tag "https://sortir-prod.s3.amazonaws.com/uploads/events/covers/medium/06ca5db894449287b5a6b44ec62eae56e2011ba0.jpg?1527686886", style:"width:253px;height:200px;"%>
+              <%end%>
               <%= button_to item, class:"card-body",method: :get do %>
                 <h4 class="card-title">
                   <h3><%= item.title %></h3>
                 </h4>
                 <h4><%=number_to_euro(item.price)%></h4>
                 <p class="card-text"><%=item.description%></p>
+                <p class="card-text"> <i class="fas fa-map-marker-alt"></i>
+                  <%= link_to City.find(item.city_id).city , city_path(City.find(item.city_id).id),class:"btn btn-quantity text-info" %>
+                </p>
                 <div>
-                  <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                </div>
-                <% if user_signed_in? %>
-                <%= link_to "Ajouter au panier", new_item_cart_item_path(item, quantity: 1),class: "btn btn-luc btn-quantity" %>
-                <% end %>
-              <%end%>
+                  <% if user_signed_in? %>
+                    <%= link_to "Ajouter au panier", new_item_cart_item_path(item, quantity: 1),class: "btn btn-luc btn-quantity" %>
+                  <% end %>
+                <%end%>
+              </div>
             </div>
-          </div>
-        <%end%>
+          <%end%>
+        </div>
+        <!-- /.row -->
       </div>
-      <!-- /.row -->
+      <!-- /.col-lg-9 -->
     </div>
-    <!-- /.col-lg-9 -->
+    <!-- /.row -->
   </div>
-  <!-- /.row -->
-</div>
-<!-- /.container -->
+  <!-- /.container -->
