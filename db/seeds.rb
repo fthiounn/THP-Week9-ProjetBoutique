@@ -20,9 +20,9 @@ nb_cities = 5
 
 nb_cities.times do |x|
   City.create(
-    city: Faker::Address.city)
-    puts "Seeding of city nb #{x}"
-  end 
+  city: Faker::Address.city)
+  puts "Seeding of city nb #{x}"
+end
 
 nb_admin.times do |x|
   User.create(
@@ -31,8 +31,8 @@ nb_admin.times do |x|
     description: "J'ai accès au Dashboard hihi",
     password: "admin1",
     email: "admin@admin.com",
-    admin: true)
-    puts "Seeding of the Admin"
+  admin: true)
+  puts "Seeding of the Admin"
 end
 
 #for the random startdate
@@ -45,10 +45,10 @@ nb_items.times do |x|
     description: Faker::Lorem.paragraph_by_chars(number: 200, supplemental: false),
     price: rand(1..20),
     city_id: City.all.sample.id,
-    date: rand(t1..t2))
-    downloaded_image = open("https://www.sortir-en-bretagne.fr/upload/2019/5dbd37d90270eshampoingsolide.jpeg")
-    item.avatar.attach(io: downloaded_image  , filename: "faker.jpg")
-    puts "seeding item nb #{x}"
+  date: rand(t1..t2))
+  downloaded_image = open("https://picsum.photos/200/300")
+  item.avatar.attach(io: downloaded_image  , filename: "faker.jpg")
+  puts "seeding item nb #{x}"
 end
 
 nb_users.times do |x|
@@ -59,7 +59,7 @@ nb_users.times do |x|
     description: Faker::Lorem.paragraph_by_chars(number: 200, supplemental: false),
     last_name: Faker::Name.last_name,
     email: fname + "@yopmail.com",
-    admin: false)
+  admin: false)
   puts "Seeding of User nb #{x}"
 end
 
